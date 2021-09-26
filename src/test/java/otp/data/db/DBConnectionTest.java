@@ -1,4 +1,4 @@
-package data.db;
+package otp.data.db;
 
 import org.junit.jupiter.api.Test;
 

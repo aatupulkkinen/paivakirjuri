@@ -1,4 +1,4 @@
-package data;
+package otp.data;
 
 public class User {
     private String name;
