@@ -6,6 +6,9 @@ module otp {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.persistence;
+    requires org.hibernate.orm.core;
+    requires java.naming;
 
     opens otp.view.login to javafx.fxml;
 
