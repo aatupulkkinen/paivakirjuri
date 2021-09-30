@@ -1,5 +1,7 @@
 package otp.data.db;
 
+
+
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -7,12 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DBConnectionTest {
 
     @Test
-    void testConnectionToDatabase() {
+    public void testConnectionToDatabase() {
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
