@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -13,7 +14,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // --add-modules=javafx.graphics,javafx.fxml --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED
 class LoginControllerTest extends ApplicationTest {
+
     private LoginController controller;
+
+    @BeforeAll
+    public static void setupProperties(){
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
