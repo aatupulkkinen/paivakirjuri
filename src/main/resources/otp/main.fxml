@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.view.login.LoginController">
+   <children>
+      <Text layoutX="211.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" />
+   </children>
+</AnchorPane>

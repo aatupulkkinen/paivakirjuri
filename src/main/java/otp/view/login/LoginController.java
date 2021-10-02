@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
+import otp.Main;
 import otp.data.UsersEntity;
 import otp.data.model.UserDao;
 
@@ -21,7 +22,7 @@ import static otp.data.db.DatabaseConstants.MAX_USER_PASSWORD_LENGTH;
 public class LoginController implements Initializable {
 
     public LoginController() {
-        loginCRUD = new LoginHelper();
+        loginCRUD = new UserDaoImpl();
     }
 
     private final UserDao loginCRUD;
@@ -40,6 +41,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Text register;
+
+    @FXML
+    private Text incorrectData;
 
     final ValidationSupport validationSupport = new ValidationSupport();
 
@@ -61,7 +65,26 @@ public class LoginController implements Initializable {
         }
         validationSupport.revalidate();
 
-        loginCRUD.get(name, pass);
+        UsersEntity user = loginCRUD.get(name, pass);
+        if (user == null) {
+            showIncorrectData();
+        } else {
+            openMainScene();
+        }
+    }
+
+    private void openMainScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openMainScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    private void showIncorrectData() {
+        incorrectData.setVisible(true);
     }
 
     @Override

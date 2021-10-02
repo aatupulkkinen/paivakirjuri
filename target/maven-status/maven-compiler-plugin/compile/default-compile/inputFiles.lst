@@ -2,11 +2,12 @@
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/view/login/LoginController.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/QuotesEntity.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/model/UserDao.java
-/Users/sublime/Desktop/paeivaekirja/src/main/java/otp/view/login/LoginHelper.java
-/Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/db/DatabaseConnection.java
+/Users/sublime/Desktop/paeivaekirja/src/main/java/otp/view/login/SceneController.java
+/Users/sublime/Desktop/paeivaekirja/src/main/java/otp/view/login/BlockInsideTransaction.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/TagsEntity.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/EmojisEntity.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/module-info.java
+/Users/sublime/Desktop/paeivaekirja/src/main/java/otp/view/login/UserDaoImpl.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/UsersEntity.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/MarksEntity.java
 /Users/sublime/Desktop/paeivaekirja/src/main/java/otp/data/hiberante/CRUD.java
