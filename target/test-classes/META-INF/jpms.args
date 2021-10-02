@@ -1,4 +1,0 @@
---patch-module
-otp=_
---add-reads
-otp=ALL-UNNAMED

@@ -8,16 +8,16 @@
             jdbc:mariadb://10.114.34.5:3306/test_eng?user=testuser&amp;password=123456
         </property>
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <mapping resource="EmojisEntity.hbm.xml"/>
-        <mapping class="otp.data.EmojisEntity"/>
-        <mapping resource="MarksEntity.hbm.xml"/>
-        <mapping class="otp.data.MarksEntity"/>
-        <mapping resource="QuotesEntity.hbm.xml"/>
-        <mapping class="otp.data.QuotesEntity"/>
-        <mapping resource="TagsEntity.hbm.xml"/>
-        <mapping class="otp.data.TagsEntity"/>
-        <mapping resource="UsersEntity.hbm.xml"/>
-        <mapping class="otp.data.UsersEntity"/>
+        <mapping resource="Emoji.hbm.xml"/>
+        <mapping class="otp.model.entities.Emoji"/>
+        <mapping resource="Mark.hbm.xml"/>
+        <mapping class="otp.model.entities.Mark"/>
+        <mapping resource="Quote.hbm.xml"/>
+        <mapping class="otp.model.entities.Quote"/>
+        <mapping resource="Tag.hbm.xml"/>
+        <mapping class="otp.model.entities.Tag"/>
+        <mapping resource="User.hbm.xml"/>
+        <mapping class="otp.model.entities.User"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

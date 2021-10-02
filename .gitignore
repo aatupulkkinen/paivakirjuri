@@ -43,7 +43,7 @@ hs_err_pid*
 .idea/
 # if you remove the above rule, at least ignore the following:
 
-# otp.data.User-specific stuff:
+# otp.model.User-specific stuff:
 # .idea/workspace.xml
 # .idea/tasks.xml
 # .idea/dictionaries

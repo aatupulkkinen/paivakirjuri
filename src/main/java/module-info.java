@@ -10,7 +10,7 @@ module otp {
     requires org.hibernate.orm.core;
     requires java.naming;
 
-    opens otp.view.login to javafx.fxml;
 
     exports otp;
+    opens otp.controllers to javafx.fxml;
 }
