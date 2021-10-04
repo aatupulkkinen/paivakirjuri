@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
@@ -50,6 +51,9 @@ public class LoginController implements Initializable {
     @FXML
     private Text incorrectData;
 
+    @FXML
+    private TextFlow registerText;
+
     final ValidationSupport validationSupport = new ValidationSupport();
 
     public void login(ActionEvent actionEvent) {
@@ -92,6 +96,13 @@ public class LoginController implements Initializable {
         }
     }
 
+    public void register() {
+        try {
+
+        } catch (){
+
+        }
+    }
     private void showIncorrectData() {
         incorrectData.setVisible(true);
     }

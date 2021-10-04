@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.LoginController">
    <children>
       <VBox layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
@@ -42,8 +43,16 @@
                   <Insets left="30.0" right="30.0" top="5.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="register" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy?" wrappingWidth="200.49749755859375" />
-                  <Text fx:id="forgotPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?" wrappingWidth="138.8614501953125" />
+                  <TextFlow fx:id="registerText" onMouseClicked="#register" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy?" wrappingWidth="200.49749755859375" />
+                     </children>
+                  </TextFlow>
+                  <TextFlow prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="forgotPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?" wrappingWidth="138.8614501953125" />
+                     </children>
+                  </TextFlow>
                </children>
             </HBox>
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="400.0" text="Kirjaudu">
