@@ -1,11 +1,12 @@
 package otp.model.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "test_eng")
-public class User {
+public class User implements Serializable {
     private String name;
     private String password;
 

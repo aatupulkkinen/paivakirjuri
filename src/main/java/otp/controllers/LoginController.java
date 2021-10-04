@@ -10,6 +10,7 @@ import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import otp.Main;
+import otp.model.daos.UserLocal;
 import otp.model.entities.User;
 import otp.model.daos.UserDao;
 import otp.SceneController;
@@ -25,9 +26,11 @@ public class LoginController implements Initializable {
 
     public LoginController() {
         loginCRUD = new UserDaoImpl();
+        userLocalRepo = new UserLocal();
     }
 
     private final UserDao loginCRUD;
+    private final UserDao userLocalRepo;
 
     @FXML
     private TextField password;
@@ -71,7 +74,11 @@ public class LoginController implements Initializable {
         if (user == null) {
             showIncorrectData();
         } else {
-            openMainScene();
+            if (userLocalRepo.insert(name, pass)) {
+                openMainScene();
+            } else {
+                // todo dialogi
+            }
         }
     }
 
