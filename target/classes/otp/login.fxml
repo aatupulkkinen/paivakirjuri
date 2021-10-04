@@ -43,6 +43,7 @@
                   <Insets left="30.0" right="30.0" top="5.0" />
                </VBox.margin>
                <children>
+<<<<<<< HEAD
                   <TextFlow fx:id="registerText" onMouseClicked="#register" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy?" wrappingWidth="200.49749755859375" />
@@ -53,6 +54,10 @@
                         <Text fx:id="forgotPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?" wrappingWidth="138.8614501953125" />
                      </children>
                   </TextFlow>
+=======
+                  <Text fx:id="register" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy?" wrappingWidth="200.49749755859375" />
+                  <Button fx:id="recoverButton" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="25.0" prefWidth="158.0" text="Unohditko salasanasi?" />
+>>>>>>> 5f49781810a907b052ce864643201a96ffa71562
                </children>
             </HBox>
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="400.0" text="Kirjaudu">
