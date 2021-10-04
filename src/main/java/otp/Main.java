@@ -34,6 +34,13 @@ public class Main extends Application implements SceneController {
         scene.setRoot(mainCallWindowFXML);
     }
 
+    public void openChangePasswordScene() throws IOException {
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
     public static SceneController getSceneController() {
         return sceneController;
     }
