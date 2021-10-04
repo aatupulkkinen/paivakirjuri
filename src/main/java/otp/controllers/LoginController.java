@@ -3,14 +3,12 @@ package otp.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-<<<<<<< HEAD
-=======
 import org.controlsfx.control.textfield.CustomTextField;
->>>>>>> 5f49781810a907b052ce864643201a96ffa71562
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
@@ -26,6 +24,7 @@ import java.util.ResourceBundle;
 
 import static otp.model.db.DatabaseConstants.MAX_USER_NAME_LENGTH;
 import static otp.model.db.DatabaseConstants.MAX_USER_PASSWORD_LENGTH;
+
 
 public class LoginController implements Initializable {
 
@@ -45,10 +44,6 @@ public class LoginController implements Initializable {
     @FXML
     private TextFlow forgotPassword;
 
-    public void forgotPassword(ActionEvent actionEvent) {
-        openForgotPasswordScene();
-    }
-
     @FXML
     private Button loginButton;
 
@@ -56,13 +51,14 @@ public class LoginController implements Initializable {
     private TextField username;
 
     @FXML
-    private Text register;
+    private Button registerButton;
 
     @FXML
     private Text incorrectData;
 
     @FXML
     private TextFlow registerText;
+
 
     final ValidationSupport validationSupport = new ValidationSupport();
 
@@ -106,16 +102,7 @@ public class LoginController implements Initializable {
         }
     }
 
-<<<<<<< HEAD
-    public void register() {
-        try {
-
-        } catch (){
-
-        }
-    }
-=======
-    private void openForgotPasswordScene() {
+    public void openForgotPasswordScene() {
         try {
             SceneController sc = Main.getSceneController();
             if (sc == null) return;
@@ -125,7 +112,6 @@ public class LoginController implements Initializable {
         }
     }
 
->>>>>>> 5f49781810a907b052ce864643201a96ffa71562
     private void showIncorrectData() {
         incorrectData.setVisible(true);
     }
@@ -134,5 +120,14 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-}
 
+    public void openRegisterScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openRegisterAccountScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+    }

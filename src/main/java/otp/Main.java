@@ -49,6 +49,13 @@ public class Main extends Application implements SceneController {
         scene.setRoot(mainCallWindowFXML);
     }
 
+    public void openRegisterAccountScene() throws IOException{
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register_account.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
     public static SceneController getSceneController() {
         return sceneController;
     }
