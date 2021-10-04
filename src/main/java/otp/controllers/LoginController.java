@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
@@ -24,6 +26,8 @@ import static otp.model.db.DatabaseConstants.MAX_USER_PASSWORD_LENGTH;
 
 public class LoginController implements Initializable {
 
+    public Button recoverButton;
+
     public LoginController() {
         loginCRUD = new UserDaoImpl();
         userLocalRepo = new UserLocal();
@@ -36,7 +40,11 @@ public class LoginController implements Initializable {
     private TextField password;
 
     @FXML
-    private Text forgotPassword;
+    private TextFlow forgotPassword;
+
+    public void forgotPassword(ActionEvent actionEvent) {
+        openForgotPasswordScene();
+    }
 
     @FXML
     private Button loginButton;
@@ -87,6 +95,16 @@ public class LoginController implements Initializable {
             SceneController sc = Main.getSceneController();
             if (sc == null) return;
             sc.openMainScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    private void openForgotPasswordScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openForgotPasswordScene();
         } catch (Throwable t) {
             t.printStackTrace();
         }

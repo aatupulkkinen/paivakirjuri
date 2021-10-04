@@ -43,7 +43,7 @@
                </VBox.margin>
                <children>
                   <Text fx:id="register" strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy?" wrappingWidth="200.49749755859375" />
-                  <Text fx:id="forgotPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?" wrappingWidth="138.8614501953125" />
+                  <Button fx:id="recoverButton" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="25.0" prefWidth="158.0" text="Unohditko salasanasi?" />
                </children>
             </HBox>
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="400.0" text="Kirjaudu">
