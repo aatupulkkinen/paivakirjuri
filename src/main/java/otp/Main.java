@@ -16,7 +16,7 @@ public class Main extends Application implements SceneController {
     @Override
     public void start(Stage stage) throws Exception {
         sceneController = this;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register_account.fxml"));
         scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("Paevaekirja");
         stage.setScene(scene);
@@ -30,6 +30,35 @@ public class Main extends Application implements SceneController {
     public void openMainScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
+    public void openChangePasswordScene() throws IOException {
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
+    @Override
+    public void openForgotPasswordScene() throws IOException {
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("forgot_password.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
+    public void openRegisterAccountScene() throws IOException{
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register_account.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        scene.setRoot(mainCallWindowFXML);
+    }
+
+    public void openLoginScene() throws IOException{
+        if (scene == null) return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
     }

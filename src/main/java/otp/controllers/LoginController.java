@@ -6,10 +6,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import otp.Main;
+import otp.model.daos.UserLocal;
 import otp.model.entities.User;
 import otp.model.daos.UserDao;
 import otp.SceneController;
@@ -21,19 +23,24 @@ import java.util.ResourceBundle;
 import static otp.model.db.DatabaseConstants.MAX_USER_NAME_LENGTH;
 import static otp.model.db.DatabaseConstants.MAX_USER_PASSWORD_LENGTH;
 
+
 public class LoginController implements Initializable {
+
+    public Button recoverButton;
 
     public LoginController() {
         loginCRUD = new UserDaoImpl();
+        userLocalRepo = new UserLocal();
     }
 
     private final UserDao loginCRUD;
+    private final UserDao userLocalRepo;
 
     @FXML
     private TextField password;
 
     @FXML
-    private Text forgotPassword;
+    private TextFlow forgotPassword;
 
     @FXML
     private Button loginButton;
@@ -42,10 +49,14 @@ public class LoginController implements Initializable {
     private TextField username;
 
     @FXML
-    private Text register;
+    private Button registerButton;
 
     @FXML
     private Text incorrectData;
+
+    @FXML
+    private TextFlow registerText;
+
 
     final ValidationSupport validationSupport = new ValidationSupport();
 
@@ -71,7 +82,11 @@ public class LoginController implements Initializable {
         if (user == null) {
             showIncorrectData();
         } else {
-            openMainScene();
+            if (userLocalRepo.insert(name, pass)) {
+                openMainScene();
+            } else {
+                // todo dialogi
+            }
         }
     }
 
@@ -85,6 +100,16 @@ public class LoginController implements Initializable {
         }
     }
 
+    public void openForgotPasswordScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openForgotPasswordScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
     private void showIncorrectData() {
         incorrectData.setVisible(true);
     }
@@ -93,5 +118,14 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-}
 
+    public void openRegisterScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openRegisterAccountScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+    }
