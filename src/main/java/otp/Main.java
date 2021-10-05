@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 
@@ -16,10 +17,11 @@ public class Main extends Application implements SceneController {
     @Override
     public void start(Stage stage) throws Exception {
         sceneController = this;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register_account.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("Paevaekirja");
         stage.setScene(scene);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.show();
     }
 

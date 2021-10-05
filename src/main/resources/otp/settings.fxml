@@ -32,7 +32,7 @@
       <Line endX="1200.0" layoutY="80.0" strokeWidth="2.0" />
       <VBox alignment="CENTER" layoutY="300.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
          <children>
-            <Button id="changePassword" fx:id="changePassword" alignment="CENTER" mnemonicParsing="false" onAction="#changePassword" text="Vaihda salasana" textAlignment="CENTER">
+            <Button id="changePassword" styleClass="btn-primary" fx:id="changePassword" alignment="CENTER" mnemonicParsing="false" onAction="#changePassword" text="Vaihda salasana" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
