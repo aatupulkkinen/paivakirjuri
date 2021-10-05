@@ -8,4 +8,5 @@ public interface SceneController {
     void openChangePasswordScene() throws IOException;
     void openForgotPasswordScene() throws IOException;
     void openRegisterAccountScene() throws IOException;
+    void openLoginScene() throws IOException;
 }
