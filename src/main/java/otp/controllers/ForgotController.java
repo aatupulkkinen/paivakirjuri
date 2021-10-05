@@ -8,7 +8,7 @@ import otp.SceneController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class ForgotController implements Initializable {
 
     @FXML
     public void backClicked() {
@@ -29,5 +29,4 @@ public class RegisterController implements Initializable {
             t.printStackTrace();
         }
     }
-
 }
