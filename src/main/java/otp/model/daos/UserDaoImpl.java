@@ -19,11 +19,8 @@ public class UserDaoImpl extends CRUD implements UserDao {
     }
 
     @Override
-    public Boolean insert(String name, String password) {
+    public Boolean insert(User user) {
         Object result = openWithTransaction((session) -> {
-            User user = new User();
-            user.setName(name);
-            user.setPassword(password);
             session.save(user);
             return true;
         });

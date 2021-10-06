@@ -25,9 +25,10 @@ public class UserUtils {
     private void createUser() {
         final String name = Utils.generateString();
         final String password = Utils.generateString();
-        if (userDao.insert(name, password)){
+        User user = new User(name, password, "123", "123");
+        if (userDao.insert(user)){
             commonUser = userDao.get(name, password);
-            local.insert(commonUser.getName(), commonUser.getPassword());
+            local.insert(user);
         }
     }
 

@@ -21,15 +21,12 @@ public class UserLocal implements UserDao {
     }
 
     @Override
-    public Boolean insert(String name, String password) {
+    public Boolean insert(User user) {
         FileOutputStream fout = null;
         try {
             String path = System.getProperty("java.io.tmpdir");
             fout = new FileOutputStream("userdata1234.aaa");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
-            User user = new User();
-            user.setName(name);
-            user.setPassword(password);
             oos.writeObject(user);
             return true;
         } catch (IOException e) {
@@ -42,7 +39,7 @@ public class UserLocal implements UserDao {
     public User changePassword(User user, String newPass) {
         User current = get(user.getName(), user.getPassword());
         current.setPassword(newPass);
-        insert(current.getName(), current.getPassword());
+        insert(new User(current.getName(), current.getPassword(), current.getFirstName(), current.getSecondName()));
         return current;
     }
 }

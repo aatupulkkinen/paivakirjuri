@@ -21,6 +21,6 @@ class UserLocalTest {
     @Test
     @Order(1)
     void insert() {
-        userLocal.insert("test", "123");
+        userLocal.insert(new User("test", "123", "123", "123"));
     }
 }
