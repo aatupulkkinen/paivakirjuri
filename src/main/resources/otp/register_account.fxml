@@ -15,7 +15,7 @@
     <children>
         <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>
-                <Image url="file:/Users/sublime/Desktop/paeivaekirja/src/main/resources/images/Group.png" />
+                <Image url="@images/Group.png" />
             </image>
         </ImageView>
         <HBox alignment="CENTER" layoutX="513.0" layoutY="14.0" prefHeight="40.0" prefWidth="238.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0">
@@ -65,5 +65,3 @@
             </children>
         </VBox>
     </children>
-</AnchorPane>
-

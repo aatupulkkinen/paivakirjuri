@@ -17,7 +17,7 @@
          <children>
             <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/Users/sublime/Desktop/paeivaekirja/src/main/resources/images/Group.png" />
+                  <Image url="@images/Group.png" />
                </image>
                <HBox.margin>
                   <Insets left="20.0" top="20.0" />
