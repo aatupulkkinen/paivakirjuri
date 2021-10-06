@@ -29,7 +29,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="297.0" layoutY="713.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="btn-primary" text="Rekisteröidy">
+            <Button fx:id="registerButton" onAction="#register" mnemonicParsing="false" styleClass="btn-primary" text="Rekisteröidy">
                <padding>
                   <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
                </padding></Button>
@@ -37,27 +37,27 @@
       </HBox>
       <VBox alignment="CENTER" fillWidth="false" layoutX="532.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <CustomTextField editable="false" promptText="Etunimi">
+            <CustomTextField fx:id="fName" promptText="Etunimi">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </CustomTextField>
-            <CustomTextField promptText="Sukunimi">
+            <CustomTextField fx:id="lName" promptText="Sukunimi">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </CustomTextField>
-            <CustomTextField promptText="Käyttäjänimi">
+            <CustomTextField fx:id="userName" promptText="Käyttäjänimi">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </CustomTextField>
-            <CustomTextField promptText="Salasana">
+            <CustomTextField fx:id="passWord" promptText="Salasana">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </CustomTextField>
-            <CustomTextField promptText="Vahvista salasana">
+            <CustomTextField fx:id="confirmPassword" promptText="Vahvista salasana">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
