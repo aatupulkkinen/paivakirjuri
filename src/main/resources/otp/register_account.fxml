@@ -18,7 +18,7 @@
    <children>
        <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
            <image>
-               <Image url="file:/Users/sublime/Desktop/paeivaekirja/src/main/resources/images/Group.png" />
+               <Image url="@images/Group.png" />
            </image>
        </ImageView>
       <GridPane alignment="CENTER" layoutX="25.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0">
