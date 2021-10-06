@@ -11,58 +11,67 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.RegisterController">
-   <children>
-       <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-           <image>
-               <Image url="file:/Users/sublime/Desktop/paeivaekirja/src/main/resources/images/Group.png" />
-           </image>
-       </ImageView>
-      <HBox alignment="CENTER" layoutX="513.0" layoutY="14.0" prefHeight="40.0" prefWidth="238.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy käyttäjäksi!" textAlignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="297.0" layoutY="713.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="registerButton" onAction="#register" mnemonicParsing="false" styleClass="btn-primary" text="Rekisteröidy">
-               <padding>
-                  <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
-               </padding></Button>
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" fillWidth="false" layoutX="532.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <CustomTextField fx:id="fName" promptText="Etunimi">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </CustomTextField>
-            <CustomTextField fx:id="lName" promptText="Sukunimi">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </CustomTextField>
-            <CustomTextField fx:id="userName" promptText="Käyttäjänimi">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </CustomTextField>
-            <CustomTextField fx:id="passWord" promptText="Salasana">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </CustomTextField>
-            <CustomTextField fx:id="confirmPassword" promptText="Vahvista salasana">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </CustomTextField>
-         </children>
-      </VBox>
-   </children>
-</AnchorPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="otp.controllers.RegisterController">
+    <children>
+        <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0"
+                   AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@images/Group.png"/>
+            </image>
+        </ImageView>
+        <HBox alignment="CENTER" layoutX="513.0" layoutY="14.0" prefHeight="40.0" prefWidth="238.0"
+              AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy käyttäjäksi!" textAlignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="297.0" layoutY="713.0" prefHeight="40.0" prefWidth="200.0"
+              AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button fx:id="registerButton" onAction="#register" mnemonicParsing="false" styleClass="btn-primary"
+                        text="Rekisteröidy">
+                    <padding>
+                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0"/>
+                    </padding>
+                </Button>
+            </children>
+        </HBox>
+        <VBox alignment="CENTER" fillWidth="false" layoutX="532.0" layoutY="260.0" maxHeight="-Infinity"
+              maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0">
+            <children>
+                <CustomTextField fx:id="fName" promptText="Etunimi">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0"/>
+                    </VBox.margin>
+                </CustomTextField>
+                <CustomTextField fx:id="lName" promptText="Sukunimi">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0"/>
+                    </VBox.margin>
+                </CustomTextField>
+                <CustomTextField fx:id="userName" promptText="Käyttäjänimi">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0"/>
+                    </VBox.margin>
+                </CustomTextField>
+                <CustomTextField fx:id="passWord" promptText="Salasana">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0"/>
+                    </VBox.margin>
+                </CustomTextField>
+                <CustomTextField fx:id="confirmPassword" promptText="Vahvista salasana">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0"/>
+                    </VBox.margin>
+                </CustomTextField>
+            </children>
+        </VBox>
+    </children>

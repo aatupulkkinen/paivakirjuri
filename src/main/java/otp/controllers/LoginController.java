@@ -20,8 +20,7 @@ import otp.model.daos.UserDaoImpl;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static otp.model.db.DatabaseConstants.MAX_USER_NAME_LENGTH;
-import static otp.model.db.DatabaseConstants.MAX_USER_PASSWORD_LENGTH;
+import static otp.model.db.DatabaseConstants.*;
 
 
 public class LoginController implements Initializable {
@@ -57,29 +56,32 @@ public class LoginController implements Initializable {
     @FXML
     private TextFlow registerText;
 
-
     final ValidationSupport validationSupport = new ValidationSupport();
 
     public void login(ActionEvent actionEvent) {
         String pass = password.getText();
         String name = username.getText();
 
-        if (name.isBlank() || name.length() > MAX_USER_PASSWORD_LENGTH) {
+        if (name.isBlank()
+                || name.length() > MAX_USER_PASSWORD_LENGTH
+                || name.length() < MIN_USER_PASSWORD_LENGTH) {
             validationSupport.registerValidator(username,
                     Validator.createRegexValidator("Virhe",
-                            String.format("^.{1,%d}$", MAX_USER_NAME_LENGTH), Severity.WARNING)
+                            String.format("^.{3,%d}$", MAX_USER_NAME_LENGTH), Severity.WARNING)
             );
         }
-        if (pass.isBlank() || name.length() > MAX_USER_PASSWORD_LENGTH) {
+        if (pass.isBlank()
+                || name.length() > MAX_USER_PASSWORD_LENGTH
+                || name.length() < MIN_USER_NAME_LENGTH) {
             validationSupport.registerValidator(password,
                     Validator.createRegexValidator("Virhe",
-                            String.format("^.{1,%d}$", MAX_USER_PASSWORD_LENGTH), Severity.WARNING)
+                            String.format("^.{3,%d}$", MAX_USER_PASSWORD_LENGTH), Severity.WARNING)
             );
         }
         validationSupport.revalidate();
 
-        User user = loginCRUD.get(name, pass);
-        if (user == null) {
+        User userToLogin = loginCRUD.get(name, pass);
+        if (userToLogin == null) {
             showIncorrectData();
         } else {
             if (userLocalRepo.insert(name, pass)) {
@@ -128,4 +130,4 @@ public class LoginController implements Initializable {
             t.printStackTrace();
         }
     }
-    }
+}

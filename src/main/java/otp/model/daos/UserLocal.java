@@ -37,4 +37,12 @@ public class UserLocal implements UserDao {
         }
         return false;
     }
+
+    @Override
+    public User changePassword(User user, String newPass) {
+        User current = get(user.getName(), user.getPassword());
+        current.setPassword(newPass);
+        insert(current.getName(), current.getPassword());
+        return current;
+    }
 }
