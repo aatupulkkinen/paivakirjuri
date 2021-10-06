@@ -8,7 +8,6 @@ public class UserDaoImpl extends CRUD implements UserDao {
     @Override
     public User get(String name, String password) {
         User user;
-
         user = (User) openWithTransaction(
                 (session) -> session.createQuery("from User where name = :n and password = :p")
                         .setParameter("n", name)
@@ -16,18 +15,33 @@ public class UserDaoImpl extends CRUD implements UserDao {
                         .list()
                         .get(0)
         );
-
         return user;
     }
 
     @Override
     public Boolean insert(String name, String password) {
-        return (Boolean) openWithTransaction((session) -> {
+        Object result = openWithTransaction((session) -> {
             User user = new User();
             user.setName(name);
             user.setPassword(password);
             session.save(user);
             return true;
         });
+        return result != null;
+    }
+
+    @Override
+    public User changePassword(User user, String newPass) {
+        Object result = openWithTransaction((session) -> {
+            user.setPassword(newPass);
+            session.update(user);
+            return user;
+        });
+        try {
+            return (User) result;
+        } catch (ClassCastException ee) {
+            ee.printStackTrace();
+            return null;
+        }
     }
 }

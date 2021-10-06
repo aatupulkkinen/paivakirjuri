@@ -29,7 +29,7 @@ public class SettingsController implements Initializable {
     private final UserDao userLocalRepo = new UserLocal();
 
     public void changePassword(ActionEvent actionEvent) {
-//        openChangePasswordScene();
+        openChangePasswordScene();
     }
 
     @FXML
