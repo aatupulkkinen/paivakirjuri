@@ -18,7 +18,7 @@ public class Main extends Application implements SceneController {
     @Override
     public void start(Stage stage) throws Exception {
         sceneController = this;
-        String resourceName = isUserLoggedIn() ? "main.fxml" : "login.fxml";
+        String resourceName = isUserLoggedIn() ? "paanakyma.fxml" : "login.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resourceName));
         scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("Paevaekirja");
