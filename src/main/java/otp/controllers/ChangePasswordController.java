@@ -46,7 +46,9 @@ public class ChangePasswordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = userLocalRepo.get("", "");
-        username.setText(user.getName() == null ? "" : user.getName());
+        if (user != null) {
+            username.setText(user.getName() == null ? "" : user.getName());
+        }
     }
 
     @FXML

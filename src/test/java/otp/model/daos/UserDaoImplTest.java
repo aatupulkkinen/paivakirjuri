@@ -5,6 +5,7 @@ import otp.model.entities.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static otp.util.Utils.generateString;
 
 // todo make temp in-memory db
 class UserDaoImplTest {
@@ -22,10 +23,6 @@ class UserDaoImplTest {
         assertTrue(result);
         assertEquals(user.getName(), name);
         assertEquals(user.getPassword(), password);
-    }
-
-    private String generateString() {
-        return java.util.UUID.randomUUID().toString();
     }
 
 }
