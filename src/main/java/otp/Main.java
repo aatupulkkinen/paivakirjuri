@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
+import otp.model.daos.UserLocal;
 
 import java.io.IOException;
 
@@ -17,7 +18,8 @@ public class Main extends Application implements SceneController {
     @Override
     public void start(Stage stage) throws Exception {
         sceneController = this;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        String resourceName = isUserLoggedIn() ? "main.fxml" : "login.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resourceName));
         scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("Paevaekirja");
         stage.setScene(scene);
@@ -27,6 +29,10 @@ public class Main extends Application implements SceneController {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private boolean isUserLoggedIn() {
+        return (new UserLocal().get("", "")) != null;
     }
 
     public void openMainScene() throws IOException {
@@ -51,21 +57,21 @@ public class Main extends Application implements SceneController {
         scene.setRoot(mainCallWindowFXML);
     }
 
-    public void openRegisterAccountScene() throws IOException{
+    public void openRegisterAccountScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("register_account.fxml"));
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
     }
 
-    public void openLoginScene() throws IOException{
+    public void openLoginScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
     }
 
-    public void openSettingsScene() throws IOException{
+    public void openSettingsScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("settings.fxml"));
         Parent mainCallWindowFXML = loader.load();
