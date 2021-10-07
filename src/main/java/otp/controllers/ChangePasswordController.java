@@ -9,6 +9,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
+import org.w3c.dom.ls.LSOutput;
 import otp.Main;
 import otp.SceneController;
 import otp.model.daos.UserDao;
