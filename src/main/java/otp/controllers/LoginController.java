@@ -84,7 +84,7 @@ public class LoginController implements Initializable {
         if (userToLogin == null) {
             showIncorrectData();
         } else {
-            if (userLocalRepo.insert(name, pass)) {
+            if (userLocalRepo.insert(userToLogin)) {
                 openMainScene();
             } else {
                 // todo dialogi
