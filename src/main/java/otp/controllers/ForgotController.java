@@ -2,7 +2,10 @@ package otp.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.text.Text;
 import otp.Main;
 import otp.SceneController;
@@ -13,6 +16,10 @@ import java.util.ResourceBundle;
 
 public class ForgotController implements Initializable {
 
+    private String tmpPass;
+
+    @FXML
+    private Button copyButton;
     @FXML
     private Label newPassString;
 
@@ -49,7 +56,19 @@ public class ForgotController implements Initializable {
                 .toString();
 
         System.out.println(generatedString);
+        tmpPass = generatedString;
 
         newPassString.setText("Uusi väliaikainen salasanasi: " + generatedString);
+        copyButton.setDisable(false);
+        copyButton.setOpacity(1);
+    }
+
+    public void copyToClipBoard() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(tmpPass);
+        clipboard.setContent(content);
+        System.out.println("Copied to clipboard");
+
     }
 }
