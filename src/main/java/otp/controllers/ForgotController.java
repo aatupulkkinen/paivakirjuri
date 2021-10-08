@@ -48,15 +48,13 @@ public class ForgotController implements Initializable {
         int targetStringLength = 7;
         Random random = new Random();
 
-        String randomPass = random.ints(leftLimit, rightLimit + 1)
+        tmpPass = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
 
-        tmpPass = randomPass;
-
-        newPassString.setText("Uusi väliaikainen salasanasi: " + randomPass);
+        newPassString.setText("Uusi väliaikainen salasanasi: " + tmpPass);
         copyButton.setDisable(false);
         copyButton.setOpacity(1);
     }
