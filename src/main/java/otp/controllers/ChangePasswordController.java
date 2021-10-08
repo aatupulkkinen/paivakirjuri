@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 import static otp.model.db.DatabaseConstants.*;
 
+
 public class ChangePasswordController implements Initializable {
 
     private final UserDao userLocalRepo = new UserLocal();
