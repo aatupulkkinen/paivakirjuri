@@ -21,6 +21,7 @@ public class Main extends Application implements SceneController {
         String resourceName = isUserLoggedIn() ? "paanakyma.fxml" : "login.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(resourceName));
         scene = new Scene(fxmlLoader.load(), 1200, 800);
+        scene.getStylesheets().add("forgot_password.css");
         stage.setTitle("Paevaekirja");
         stage.setScene(scene);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
