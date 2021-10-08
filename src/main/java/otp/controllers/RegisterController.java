@@ -1,5 +1,7 @@
 package otp.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -73,6 +75,13 @@ public class RegisterController implements Initializable {
         Stage newStage = new Stage();
         VBox comp = new VBox();
         Button button = new Button();
+        EventHandler<ActionEvent> buttonHandler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openLoginScene();
+                newStage.close();
+            }
+        };
         recoveryCode();
         TextField recoveryCodeField = new TextField(recoveryCodeString);
         Text text = new Text("Käyttäjätunnus luotu.\n\n Otathan alla olevan koodin varmaan talteen.\n Tarvitset sitä mikäli unohdat salasanasi.");
@@ -87,6 +96,7 @@ public class RegisterController implements Initializable {
         text.setTextAlignment(TextAlignment.CENTER);
         comp.setSpacing(10);
         button.setText("Jatka");
+        button.setOnAction(buttonHandler);
         recoveryCodeField.setMaxWidth(100);
         text.wrappingWidthProperty().bind(stageScene.widthProperty().subtract(15));
 
