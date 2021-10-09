@@ -4,17 +4,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import otp.Main;
+import otp.SceneController;
 
 public class MainTextController {
     @FXML
-    private TextFlow writing;
+    private TextArea writing = new TextArea();
+    @FXML
+    AnchorPane mainView = new AnchorPane(writing);
     @FXML
     private Button settings;
     @FXML
@@ -25,6 +32,33 @@ public class MainTextController {
     private Button sidebar;
     @FXML
     private Button newMark;
+    @FXML
+    private Button saveButton;
+
+    Stage sideView = new Stage();
+    // teksti tallennetaan instanssimuuttujaksi myöhempää käyttöä varten
+    private String text = writing.getText();
 
 
+
+    public void saveText (ActionEvent ae) {
+        System.out.println(text);
+    }
+
+    // getTextillä voidaan viedä teksti muihin sceneihin
+    public String getText() {
+        return text;
+    }
+
+    public void openSideView(){
+
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            //sc.openSideViewScene(); ei toimi jostain syystä. Näyttää punaista.
+            System.out.print("opensideview toimii");
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
 }
