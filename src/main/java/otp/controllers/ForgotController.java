@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -25,11 +22,6 @@ import java.util.ResourceBundle;
 public class ForgotController implements Initializable {
 
     private String tmpPass;
-
-    @FXML
-    private Button copyButton;
-    @FXML
-    private Label newPassString;
 
     @FXML
     public void backClicked() {
@@ -100,14 +92,4 @@ public class ForgotController implements Initializable {
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
     }
-
-    /*
-    public void copyToClipBoard() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent content = new ClipboardContent();
-        content.putString(tmpPass);
-        clipboard.setContent(content);
-        copyButton.setText("Kopioitu!");
-    }
-    */
 }
