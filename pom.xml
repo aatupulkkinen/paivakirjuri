@@ -83,6 +83,12 @@
             <version>jdk-11+26</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -98,19 +104,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <argLine>
-                        --add-opens=javafx.graphics/javafx.scene=org.controlsfx.controls
-                        --add-opens=otp/otp.model.entities=org.hibernate.orm.core
-                        --add-opens=otp/otp.controllers=ALL-UNNAMED
-                        --add-modules=javafx.graphics,javafx.fxml
-                        --add-reads javafx.graphics=ALL-UNNAMED
-                        --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED
-                        --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED
-                        --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
-                        --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED
-                        --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED
-                        --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED
-                        --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED
+                    <argLine>@{argLine} --add-opens=javafx.graphics/javafx.scene=org.controlsfx.controls --add-opens=otp/otp.model.entities=org.hibernate.orm.core --add-opens=otp/otp.controllers=ALL-UNNAMED --add-modules=javafx.graphics,javafx.fxml --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED
                     </argLine>
                 </configuration>
             </plugin>
@@ -144,6 +138,26 @@
                         <configuration>
                             <mainClass>otp.Main</mainClass>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
