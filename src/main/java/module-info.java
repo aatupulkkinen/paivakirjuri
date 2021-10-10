@@ -9,6 +9,7 @@ module otp {
     requires java.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires jasypt;
 
 
     exports otp;
