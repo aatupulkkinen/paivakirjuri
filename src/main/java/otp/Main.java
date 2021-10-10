@@ -84,7 +84,6 @@ public class Main extends Application implements SceneController {
         scene.setRoot(mainCallWindowFXML);
     }
 
-
     public static SceneController getSceneController() {
         return sceneController;
     }
