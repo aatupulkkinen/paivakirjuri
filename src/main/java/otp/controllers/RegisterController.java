@@ -15,6 +15,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import otp.Main;
 import otp.SceneController;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.net.URL;
 import java.util.Random;
@@ -47,9 +48,16 @@ public class RegisterController implements Initializable {
     @FXML
     private Button registerButton;
 
+    @FXML
+    private Text incorrectPassword;
 
+    BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        basicTxtEncry.setPassword("auvonkurssi");
+    }
+
+
 
     private void openLoginScene() {
         try {
@@ -62,15 +70,30 @@ public class RegisterController implements Initializable {
     }
 
     public void register (){
-        String firstName = fName.getText();
-        String lastName = lName.getText();
-        String usrName = userName.getText();
-        String pWord = passWord.getText();
-        String confirmPWord = confirmPassword.getText();
+        basicTxtEncry.setPassword("auvonkurssi");
+        String firstName = encrypt(fName.getText());
+        String lastName = encrypt(lName.getText());
+        String usrName = encrypt(userName.getText());
+        String pWord = encrypt(passWord.getText());
+        String confirmPWord = encrypt(confirmPassword.getText());
 
-        System.out.println(firstName+" "+lastName+" "+usrName+" "+pWord+" "+confirmPWord);
+        // kun kaikki ok
+        if (decrypt(pWord).equals(decrypt(confirmPWord))){
+            System.out.println("tarkistus toimii");
+            //showStage();
+        }
+        System.out.println("ei toimi");
     }
 
+    public String encrypt(String toEncrypt){
+        String encrypted = basicTxtEncry.encrypt(toEncrypt);
+        return encrypted;
+    }
+
+    public String decrypt(String toDecrypt){
+        String decrypted = basicTxtEncry.decrypt(toDecrypt);
+        return decrypted;
+    }
     public void showStage(){
         Stage newStage = new Stage();
         VBox comp = new VBox();
@@ -115,5 +138,9 @@ public class RegisterController implements Initializable {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    private void showIncorrectPassword() {
+        incorrectPassword.setVisible(true);
     }
 }
