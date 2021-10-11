@@ -12,16 +12,28 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.CustomTextField;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import otp.Main;
 import otp.SceneController;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ForgotController implements Initializable {
 
     private String tmpPass;
+
+    @FXML
+    private CustomTextField username;
+
+    @FXML
+    private CustomTextField recoveryCode;
 
     @FXML
     public void backClicked() {
@@ -33,17 +45,14 @@ public class ForgotController implements Initializable {
 
     }
 
-    private void openLoginScene() {
-        try {
-            SceneController sc = Main.getSceneController();
-            if (sc == null) return;
-            sc.openLoginScene();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+    public void checkUsernameAndCode() {
+        String usernameValue = username.getText();
+        String recoveryCodeValue = recoveryCode.getText();
+
+        showStage();
     }
 
-    public void showStage(){
+    public void showStage() {
         Stage newStage = new Stage();
         VBox comp = new VBox();
         Button button = new Button();
@@ -92,4 +101,15 @@ public class ForgotController implements Initializable {
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
     }
+
+    private void openLoginScene() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openLoginScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
 }

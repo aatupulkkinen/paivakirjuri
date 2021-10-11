@@ -52,36 +52,32 @@ public class MainTextController {
     }
 
 
-
-
-
-
-            public void saveText () {
-                text = writing.getText();
-                System.out.println(text);
-            }
-            public void sideViewAction () {
-                try {
-                    SceneController sc = Main.getSceneController();
-                    if (sc == null) return;
-                    //sc.openSideViewScene(); ei löydä openSideViewSceneä Mainistä
-
-                } catch (Throwable t) {
-                    t.printStackTrace();
-                }
-            }
-
-
-
-        public void settingsAction () {
-            try {
-                SceneController sc = Main.getSceneController();
-                if (sc == null) return;
-                sc.openSettingsScene();
-            } catch (Throwable t) {
-                t.printStackTrace();
-            }
-        }
-
+    public void saveText() {
+        text = writing.getText();
+        System.out.println(text);
     }
+
+    public void sideViewAction() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            //sc.openSideViewScene(); ei löydä openSideViewSceneä Mainistä
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+
+    public void settingsAction() {
+        try {
+            SceneController sc = Main.getSceneController();
+            if (sc == null) return;
+            sc.openSettingsScene();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+}
 
