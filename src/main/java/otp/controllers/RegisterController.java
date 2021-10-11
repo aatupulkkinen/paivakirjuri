@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -16,6 +15,9 @@ import javafx.stage.Stage;
 import otp.Main;
 import otp.SceneController;
 import org.jasypt.util.text.BasicTextEncryptor;
+import otp.model.daos.UserDao;
+import otp.model.daos.UserDaoImpl;
+import otp.model.entities.User;
 
 import java.net.URL;
 import java.util.Random;
@@ -24,6 +26,7 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
 
     private String recoveryCodeString;
+
 
     @FXML
     public void backClicked() {
@@ -51,7 +54,15 @@ public class RegisterController implements Initializable {
     @FXML
     private Text incorrectPassword;
 
+    private User userToRegister;
+
     BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
+
+    private final UserDao userCRUD;
+
+    public RegisterController() {
+        userCRUD = new UserDaoImpl();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,6 +87,8 @@ public class RegisterController implements Initializable {
         String usrName = encrypt(userName.getText());
         String pWord = encrypt(passWord.getText());
         String confirmPWord = encrypt(confirmPassword.getText());
+
+        userToRegister = new User(usrName, pWord, firstName, lastName);
 
         // kun kaikki ok
         if (decrypt(pWord).equals(decrypt(confirmPWord))) {
@@ -150,7 +163,9 @@ public class RegisterController implements Initializable {
         incorrectPassword.setVisible(true);
     }
 
-    public void pushToDB(){
-        // todo
+    public void pushToDB() {
+        //
+        System.out.println(userToRegister);
+        userCRUD.insert(userToRegister);
     }
 }

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RegisterControllerTest extends AutomaticRobotTest {
 
-    RegisterController registerController = new RegisterController();
     @Test
     public void viewsPresent() {
         CustomTextField fName = lookup("#fName").query();
@@ -45,20 +44,6 @@ public class RegisterControllerTest extends AutomaticRobotTest {
          clickOn("#registerButton");
 
          assertTrue(incorrectData.isVisible());
-     }
-
-     @Test
-    public void passwordEncryption() {
-        registerController.setEncryptPass("junit-testi");
-        String test1 = "ohtuprokkis";
-        String test2 = "Opettajana Auvo";
-        Boolean encrypted = true;
-        String t1Encrypted = registerController.encrypt(test1);
-        String t2Encrypted = registerController.encrypt(test2);
-        if (test1.equals(t1Encrypted) || test2.equals(t2Encrypted) ) {
-            encrypted = false;
-        }
-        assertTrue(encrypted);
      }
 
     @Override
