@@ -39,7 +39,7 @@ public class MainTextController {
 
     Stage sideView = new Stage();
     // teksti tallennetaan instanssimuuttujaksi myöhempää käyttöä varten
-    private String text = writing.getText();
+    private String text;
 
 
     public void saveText(ActionEvent ae) {
@@ -58,14 +58,7 @@ public class MainTextController {
     }
 
     public void sideViewAction() {
-        try {
-            SceneController sc = Main.getSceneController();
-            if (sc == null) return;
-            //sc.openSideViewScene(); ei löydä openSideViewSceneä Mainistä
 
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
 
