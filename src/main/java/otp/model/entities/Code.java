@@ -29,7 +29,6 @@ public class Code {
         return Objects.hash(name, code);
     }
 
-    @Basic
     @Id
     @Column(name = "name", nullable = false, length = 40)
     public String getName() {

@@ -18,6 +18,8 @@
         <mapping class="otp.model.entities.Tag"/>
         <mapping resource="User.hbm.xml"/>
         <mapping class="otp.model.entities.User"/>
+        <mapping resource="Code.hbm.xml"/>
+        <mapping class="otp.model.entities.Code"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

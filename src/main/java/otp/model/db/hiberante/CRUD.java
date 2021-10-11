@@ -24,6 +24,7 @@ abstract public class CRUD {
             session.close();
         } catch (Exception e) {
             System.out.println("Virhe");
+            e.printStackTrace();
             result = null;
             if (t != null)
                 t.rollback();
