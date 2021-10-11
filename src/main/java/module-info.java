@@ -13,7 +13,7 @@ module otp {
 
 
     exports otp;
-    opens otp.controllers to javafx.fxml;
+    opens otp.controllers;
     opens otp.model.entities to org.hibernate.orm.core;
     opens otp.model.daos;
 }
