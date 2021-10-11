@@ -79,8 +79,8 @@ public class RegisterController implements Initializable {
 
         // kun kaikki ok
         if (decrypt(pWord).equals(decrypt(confirmPWord))) {
-            showStage();
             pushToDB();
+            showStage();
         } else if (!decrypt(pWord).equals(decrypt(confirmPWord))) {
             showIncorrectPassword();
         }
