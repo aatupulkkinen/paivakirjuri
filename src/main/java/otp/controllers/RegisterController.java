@@ -52,11 +52,11 @@ public class RegisterController implements Initializable {
     private Text incorrectPassword;
 
     BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        basicTxtEncry.setPassword("auvonkurssi");
+        setEncryptPass("auvonkurssi");
     }
-
 
 
     private void openLoginScene() {
@@ -69,8 +69,8 @@ public class RegisterController implements Initializable {
         }
     }
 
-    public void register (){
-        basicTxtEncry.setPassword("auvonkurssi");
+    public void register() {
+
         String firstName = encrypt(fName.getText());
         String lastName = encrypt(lName.getText());
         String usrName = encrypt(userName.getText());
@@ -78,23 +78,29 @@ public class RegisterController implements Initializable {
         String confirmPWord = encrypt(confirmPassword.getText());
 
         // kun kaikki ok
-        if (decrypt(pWord).equals(decrypt(confirmPWord))){
-            System.out.println("tarkistus toimii");
-            //showStage();
+        if (decrypt(pWord).equals(decrypt(confirmPWord))) {
+            pushToDB();
+            showStage();
+        } else if (!decrypt(pWord).equals(decrypt(confirmPWord))) {
+            showIncorrectPassword();
         }
-        System.out.println("ei toimi");
     }
 
-    public String encrypt(String toEncrypt){
+    public String encrypt(String toEncrypt) {
         String encrypted = basicTxtEncry.encrypt(toEncrypt);
         return encrypted;
     }
 
-    public String decrypt(String toDecrypt){
+    public String decrypt(String toDecrypt) {
         String decrypted = basicTxtEncry.decrypt(toDecrypt);
         return decrypted;
     }
-    public void showStage(){
+
+    public void setEncryptPass(String pass) {
+        basicTxtEncry.setPassword(pass);
+    }
+
+    public void showStage() {
         Stage newStage = new Stage();
         VBox comp = new VBox();
         Button button = new Button();
@@ -142,5 +148,9 @@ public class RegisterController implements Initializable {
 
     private void showIncorrectPassword() {
         incorrectPassword.setVisible(true);
+    }
+
+    public void pushToDB(){
+        // todo
     }
 }

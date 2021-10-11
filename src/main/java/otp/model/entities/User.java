@@ -10,13 +10,13 @@ public class User implements Serializable {
     private String name;
     private String password;
     private String firstName;
-    private String secondName;
+    private String lastName;
 
     public User(String name, String password, String firstName, String secondName) {
         this.name = name;
         this.password = password;
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.lastName = lastName;
     }
 
     public User() {}
@@ -34,11 +34,11 @@ public class User implements Serializable {
     @Basic
     @Column(name = "name", nullable = false, length = 40)
     public String getSecondName() {
-        return secondName;
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Basic
@@ -83,6 +83,6 @@ public class User implements Serializable {
         return name.equals(user.name)
                 && password.equals(user.password)
                 && firstName.equals(user.firstName)
-                && secondName.equals(user.secondName);
+                && lastName.equals(user.lastName);
     }
 }
