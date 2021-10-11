@@ -16,12 +16,6 @@ class ChangePasswordControllerTest extends AutomaticRobotTest {
         UserUtils.getInstance().getUser();
     }
 
-    @Override
-    public void init() throws Exception {
-        resourceName = "change_password.fxml";
-        super.init();
-    }
-
     @Test
     public void viewsPresent() {
         Text infoMessage = lookup("#infoMessage").query();
@@ -62,5 +56,10 @@ class ChangePasswordControllerTest extends AutomaticRobotTest {
         clickOn("#changePassword");
 
         assertTrue(incorrectData.isVisible());
+    }
+
+    @Override
+    protected String getScene() {
+        return "change_password.fxml";
     }
 }

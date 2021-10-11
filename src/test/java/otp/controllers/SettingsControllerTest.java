@@ -12,7 +12,6 @@ class SettingsControllerTest extends AutomaticRobotTest {
 
     @Override
     public void init() throws Exception {
-        resourceName = "settings.fxml";
         super.init();
     }
 
@@ -28,4 +27,8 @@ class SettingsControllerTest extends AutomaticRobotTest {
         assertEquals(login.getText(), "Vaihda salasana");
     }
 
+    @Override
+    protected String getScene() {
+        return "settings.fxml";
+    }
 }

@@ -11,16 +11,11 @@ abstract public class AutomaticRobotTest extends ApplicationTest {
 
     protected Initializable controller;
 
-    protected String resourceName = "";
-
     @Override
     public void start(Stage stage) throws Exception {
-        if (resourceName.isBlank()) {
-            throw new RuntimeException("virhe");
-        }
         super.start(stage);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/otp/" + resourceName));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/otp/" + getScene()));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setScene(scene);
         controller = fxmlLoader.getController();
@@ -35,4 +30,6 @@ abstract public class AutomaticRobotTest extends ApplicationTest {
         System.setProperty("prism.text", "t2k");
         System.setProperty("java.awt.headless", "true");
     }
+
+    abstract protected String getScene();
 }

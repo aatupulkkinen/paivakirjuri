@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RegisterControllerTest extends AutomaticRobotTest {
 
-    @Override
-    public void init() throws Exception {
-        resourceName = "register_account.fxml";
-        super.init();
-
-
-    }
     RegisterController registerController = new RegisterController();
     @Test
     public void viewsPresent() {
@@ -67,4 +60,9 @@ public class RegisterControllerTest extends AutomaticRobotTest {
         }
         assertTrue(encrypted);
      }
+
+    @Override
+    protected String getScene() {
+        return "register_account.fxml";
+    }
 }
