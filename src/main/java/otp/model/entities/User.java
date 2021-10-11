@@ -10,13 +10,13 @@ public class User implements Serializable {
     private String name;
     private String password;
     private String firstName;
-    private String lastName;
+    private String secondName;
 
     public User(String name, String password, String firstName, String secondName) {
         this.name = name;
         this.password = password;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.secondName = secondName;
     }
 
     public User() {}
@@ -34,11 +34,11 @@ public class User implements Serializable {
     @Basic
     @Column(name = "name", nullable = false, length = 40)
     public String getSecondName() {
-        return lastName;
+        return secondName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     @Basic
@@ -64,7 +64,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, password, firstName, lastName);
+        return Objects.hash(name, password, firstName, secondName);
     }
 
     @Override
@@ -83,6 +83,6 @@ public class User implements Serializable {
         return name.equals(user.name)
                 && password.equals(user.password)
                 && firstName.equals(user.firstName)
-                && lastName.equals(user.lastName);
+                && secondName.equals(user.secondName);
     }
 }
