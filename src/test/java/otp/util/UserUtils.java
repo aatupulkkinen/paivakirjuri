@@ -26,13 +26,13 @@ public class UserUtils {
         final String name = Utils.generateString();
         final String password = Utils.generateString();
         User user = new User(name, password, "123", "123");
-        if (userDao.insert(user)){
+        if (userDao.insert(user)) {
             commonUser = userDao.get(name, password);
             local.insert(user);
         }
     }
 
-    public User getUser(){
+    public User getUser() {
         createUser();
         return commonUser;
     }

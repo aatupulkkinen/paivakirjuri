@@ -26,25 +26,25 @@ public class RegisterControllerTest extends AutomaticRobotTest {
         assertEquals(confirmPassword.getPromptText(), "Vahvista salasana");
     }
 
-     @Test
-     public void passwordsNotMatching() {
-         Text incorrectData = lookup("#incorrectPassword").query();
-         assertFalse(incorrectData.isVisible());
+    @Test
+    public void passwordsNotMatching() {
+        Text incorrectData = lookup("#incorrectPassword").query();
+        assertFalse(incorrectData.isVisible());
 
-         clickOn("#fName");
-         write("junit");
-         clickOn("#lName");
-         write("test");
-         clickOn("#userName");
-         write("junit-test");
-         clickOn("#passWord");
-         write("pass");
-         clickOn("#confirmPassword");
-         write("pass1");
-         clickOn("#registerButton");
+        clickOn("#fName");
+        write("junit");
+        clickOn("#lName");
+        write("test");
+        clickOn("#userName");
+        write("junit-test");
+        clickOn("#passWord");
+        write("pass");
+        clickOn("#confirmPassword");
+        write("pass1");
+        clickOn("#registerButton");
 
-         assertTrue(incorrectData.isVisible());
-     }
+        assertTrue(incorrectData.isVisible());
+    }
 
     @Override
     protected String getScene() {

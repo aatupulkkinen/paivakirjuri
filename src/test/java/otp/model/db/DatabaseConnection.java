@@ -17,7 +17,7 @@ public class DatabaseConnection {
         connection = initConnection();
     }
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return connection;
     }
 

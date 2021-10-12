@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChangePasswordControllerTest extends AutomaticRobotTest {
 
     @BeforeAll
-    public static void createUser(){
+    public static void createUser() {
         UserUtils.getInstance().getUser();
     }
 

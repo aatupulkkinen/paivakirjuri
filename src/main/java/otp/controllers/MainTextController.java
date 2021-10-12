@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import otp.Main;
@@ -39,6 +40,8 @@ public class MainTextController {
     private Button newMark;
     @FXML
     private Button saveButton;
+    @FXML
+    private Text quoteText;
 
 
     Stage sideView = new Stage();
@@ -76,7 +79,9 @@ public class MainTextController {
         }
     }
 
-    public void fetchQuote() throws IOException {
+    private String quote = null;
+
+    public String fetchQuote() throws IOException {
         // connect to the api
         String quoteURL = "https://api.kanye.rest";
         URL url = new URL(quoteURL);
@@ -84,12 +89,14 @@ public class MainTextController {
         request.connect();
 
         // print data
-        JsonParser jp = new JsonParser(); //from gson
+        JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
         JsonObject rootobj = root.getAsJsonObject();
-        String quote =null;
         quote = rootobj.get("quote").getAsString();
-        System.out.println(quote);
+        quoteText.setText(quote);
+        quoteText.setVisible(true);
+
+        return quote;
     }
 }
 

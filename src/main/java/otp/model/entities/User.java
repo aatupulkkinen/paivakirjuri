@@ -19,7 +19,8 @@ public class User implements Serializable {
         this.secondName = secondName;
     }
 
-    public User() {}
+    public User() {
+    }
 
     @Id
     @Column(name = "name", nullable = false, length = 40)
