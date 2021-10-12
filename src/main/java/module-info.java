@@ -10,6 +10,7 @@ module otp {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires jasypt;
+    requires com.google.gson;
 
 
     exports otp;
