@@ -13,19 +13,20 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import otp.Main;
 import otp.SceneController;
+import otp.model.daos.*;
+import otp.model.entities.Code;
+import otp.model.entities.User;
 
 import java.net.URL;
-import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ForgotController implements Initializable {
+
+    final private UserDao userRemote = new UserDaoImpl();
+    final private ForgotDao forgotDao = new ForgotDaoImpl();
 
     private String tmpPass;
 
@@ -49,10 +50,15 @@ public class ForgotController implements Initializable {
         String usernameValue = username.getText();
         String recoveryCodeValue = recoveryCode.getText();
 
-        showStage();
+        Code code = forgotDao.get(usernameValue);
+        if (code != null && code.getCode().equals(recoveryCodeValue)) {
+            showStage(usernameValue);
+        } else {
+            // virheilmoitus tässä
+        }
     }
 
-    public void showStage() {
+    public void showStage(String usernmae) {
         Stage newStage = new Stage();
         VBox comp = new VBox();
         Button button = new Button();
@@ -65,6 +71,10 @@ public class ForgotController implements Initializable {
         };
         newPass();
         TextField tempPassField = new TextField(tmpPass);
+        if (!updatePassword(tmpPass, usernmae)){
+            // virheilmoitus tässä
+            return;
+        }
         Text newPassText = new Text("Uusi väliaikainen salasanasi:");
         comp.getChildren().add(newPassText);
         comp.getChildren().add(tempPassField);
@@ -87,6 +97,14 @@ public class ForgotController implements Initializable {
 
         newStage.setScene(stageScene);
         newStage.show();
+    }
+
+    private boolean updatePassword(String tmpPass, String username) {
+        User user = userRemote.get(username);
+        if (user != null) {
+            return userRemote.changePassword(user, tmpPass) != null;
+        }
+        return false;
     }
 
     public void newPass() {

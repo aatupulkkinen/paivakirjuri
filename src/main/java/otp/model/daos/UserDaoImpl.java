@@ -19,6 +19,19 @@ public class UserDaoImpl extends CRUD implements UserDao {
     }
 
     @Override
+    public User get(String name) {
+        User user;
+        user = (User) openWithTransaction(
+                (session) -> session.createQuery("from User where name = :n")
+                        .setParameter("n", name)
+                        .list()
+                        .get(0)
+        );
+        return user;
+    }
+
+
+    @Override
     public Boolean insert(User user) {
         Object result = openWithTransaction((session) -> {
             session.save(user);

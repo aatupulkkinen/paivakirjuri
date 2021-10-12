@@ -1,5 +1,6 @@
 package otp.model.daos;
 
+import org.hibernate.cfg.NotYetImplementedException;
 import otp.model.entities.User;
 
 import java.io.*;
@@ -41,5 +42,10 @@ public class UserLocal implements UserDao {
         current.setPassword(newPass);
         insert(new User(current.getName(), current.getPassword(), current.getFirstName(), current.getSecondName()));
         return current;
+    }
+
+    @Override
+    public User get(String name) {
+        throw new NotYetImplementedException();
     }
 }
