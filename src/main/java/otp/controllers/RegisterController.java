@@ -15,8 +15,12 @@ import javafx.stage.Stage;
 import otp.Main;
 import otp.SceneController;
 import org.jasypt.util.text.BasicTextEncryptor;
+import otp.model.daos.ForgotDao;
+import otp.model.daos.ForgotDaoImpl;
 import otp.model.daos.UserDao;
 import otp.model.daos.UserDaoImpl;
+import otp.model.encryption.EncryptionHandler;
+import otp.model.entities.Code;
 import otp.model.entities.User;
 
 import java.net.URL;
@@ -56,8 +60,6 @@ public class RegisterController implements Initializable {
 
     private User userToRegister;
 
-    private BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
-
     private final UserDao userCRUD;
 
     public RegisterController() {
@@ -66,7 +68,6 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setEncryptPass("auvonkurssi");
     }
 
 
@@ -81,36 +82,23 @@ public class RegisterController implements Initializable {
     }
 
     public void register() {
-        String firstName = encrypt(fName.getText());
-        String lastName = encrypt(lName.getText());
-        String usrName = encrypt(userName.getText());
-        String pWord = encrypt(passWord.getText());
-        String confirmPWord = encrypt(confirmPassword.getText());
+        String firstName = fName.getText();
+        String lastName = lName.getText();
+        String usrName = userName.getText();
+        String pWord = passWord.getText();
+        String confirmPWord = confirmPassword.getText();
 
         userToRegister = new User(usrName, pWord, firstName, lastName);
 
 
-        if (!decrypt(pWord).equals(decrypt(confirmPWord))) {
+        if (!pWord.equals(confirmPWord)) {
             showIncorrectPassword();
         } // kun kaikki ok
-        else if (decrypt(pWord).equals(decrypt(confirmPWord))) {
+        else if (pWord.equals(confirmPWord)) {
+            recoveryCode();
             pushToDB();
             showStage();
         }
-    }
-
-    public String encrypt(String toEncrypt) {
-        String encrypted = basicTxtEncry.encrypt(toEncrypt);
-        return encrypted;
-    }
-
-    public String decrypt(String toDecrypt) {
-        String decrypted = basicTxtEncry.decrypt(toDecrypt);
-        return decrypted;
-    }
-
-    public void setEncryptPass(String pass) {
-        basicTxtEncry.setPassword(pass);
     }
 
     public void showStage() {
@@ -124,7 +112,6 @@ public class RegisterController implements Initializable {
                 newStage.close();
             }
         };
-        recoveryCode();
         TextField recoveryCodeField = new TextField(recoveryCodeString);
         Text text = new Text("Käyttäjätunnus luotu.\n\n Otathan alla olevan koodin varmaan talteen.\n Tarvitset sitä mikäli unohdat salasanasi.");
         comp.getChildren().add(text);
@@ -167,5 +154,7 @@ public class RegisterController implements Initializable {
         //
         System.out.println(userToRegister);
         userCRUD.insert(userToRegister);
+        final ForgotDao forgotDao = new ForgotDaoImpl();
+        forgotDao.insert(new Code(userToRegister.getName(), recoveryCodeString));
     }
 }

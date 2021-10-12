@@ -10,12 +10,15 @@ import otp.Main;
 import otp.SceneController;
 import otp.model.daos.UserDao;
 import otp.model.daos.UserLocal;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
+
+    private final EncryptionHandler encryptionHandler = new EncryptionHandler();
 
     @FXML
     private Button changePassword;
@@ -60,6 +63,7 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User user = userLocalRepo.get("", "");
-        username.setText(user.getName() == null ? "" : user.getName());
+        String decryptedName = encryptionHandler.decrypt(user.getName());
+        username.setText(user.getName() == null ? "" : decryptedName);
     }
 }

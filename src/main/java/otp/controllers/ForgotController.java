@@ -13,9 +13,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
+import org.jasypt.util.text.BasicTextEncryptor;
+import org.jasypt.util.text.TextEncryptor;
 import otp.Main;
 import otp.SceneController;
 import otp.model.daos.*;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.Code;
 import otp.model.entities.User;
 

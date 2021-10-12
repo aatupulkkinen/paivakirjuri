@@ -12,6 +12,7 @@ import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import otp.Main;
 import otp.model.daos.UserLocal;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.User;
 import otp.model.daos.UserDao;
 import otp.SceneController;
@@ -57,6 +58,8 @@ public class LoginController implements Initializable {
     private TextFlow registerText;
 
     final ValidationSupport validationSupport = new ValidationSupport();
+
+    private final EncryptionHandler encryptionHandler = new EncryptionHandler();
 
     public void login(ActionEvent actionEvent) {
         String pass = password.getText();
@@ -130,5 +133,4 @@ public class LoginController implements Initializable {
             t.printStackTrace();
         }
     }
-
-    }
+}

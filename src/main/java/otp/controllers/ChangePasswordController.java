@@ -11,6 +11,7 @@ import otp.SceneController;
 import otp.model.daos.UserDao;
 import otp.model.daos.UserDaoImpl;
 import otp.model.daos.UserLocal;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.User;
 
 import java.net.URL;
@@ -23,6 +24,8 @@ import static otp.model.db.DatabaseConstants.*;
 public class ChangePasswordController implements Initializable {
 
     private final UserDao userLocalRepo = new UserLocal();
+
+    private final EncryptionHandler encryptionHandler = new EncryptionHandler();
 
     @FXML
     public CustomTextField oldPassword;
@@ -48,7 +51,8 @@ public class ChangePasswordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = userLocalRepo.get("", "");
         if (user != null) {
-            username.setText(user.getName() == null ? "" : user.getName());
+            String name = encryptionHandler.decrypt(user.getName());
+            username.setText(user.getName() == null ? "" : name);
         }
     }
 
@@ -75,8 +79,8 @@ public class ChangePasswordController implements Initializable {
 
         if (user == null) return;
 
-        if (!Objects.equals(user.getPassword(), currentPassword) ||
-                Objects.equals(user.getPassword(), newPass)
+        if (!Objects.equals(encryptionHandler.decrypt(user.getPassword()), currentPassword) ||
+                Objects.equals(encryptionHandler.decrypt(user.getPassword()), newPass)
         ) {
             updateInfoMessage(false, "Virheellinen salasana");
             return;

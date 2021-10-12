@@ -86,7 +86,6 @@ public class MainTextController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String name = userDao.get("", "").getName();
         List<Mark> marks = markDao.getAll(name);
-        System.out.println(marks);
     }
 
     private String quote = null;
