@@ -56,7 +56,7 @@ public class RegisterController implements Initializable {
 
     private User userToRegister;
 
-    BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
+    private BasicTextEncryptor basicTxtEncry = new BasicTextEncryptor();
 
     private final UserDao userCRUD;
 
@@ -81,7 +81,6 @@ public class RegisterController implements Initializable {
     }
 
     public void register() {
-
         String firstName = encrypt(fName.getText());
         String lastName = encrypt(lName.getText());
         String usrName = encrypt(userName.getText());
@@ -90,12 +89,13 @@ public class RegisterController implements Initializable {
 
         userToRegister = new User(usrName, pWord, firstName, lastName);
 
-        // kun kaikki ok
-        if (decrypt(pWord).equals(decrypt(confirmPWord))) {
+
+        if (!decrypt(pWord).equals(decrypt(confirmPWord))) {
+            showIncorrectPassword();
+        } // kun kaikki ok
+        else if (decrypt(pWord).equals(decrypt(confirmPWord))) {
             pushToDB();
             showStage();
-        } else if (!decrypt(pWord).equals(decrypt(confirmPWord))) {
-            showIncorrectPassword();
         }
     }
 
