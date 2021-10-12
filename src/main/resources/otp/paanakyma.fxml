@@ -19,7 +19,7 @@
       <Button fx:id="colorButton" layoutX="1118.0" layoutY="657.0" mnemonicParsing="false" text="Color" />
       <Text fx:id="topicText" layoutX="424.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Topic" />
       <Text fx:id="dateText" layoutX="763.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-      <Button fx:id="quoteButton" layoutX="1113.0" layoutY="585.0" mnemonicParsing="false" text="Quote" />
+      <Button fx:id="quoteButton" layoutX="1113.0" layoutY="585.0" mnemonicParsing="false" text="Quote" onAction="#fetchQuote" />
       <Button fx:id="imageButton" layoutX="1114.0" layoutY="551.0" mnemonicParsing="false" text="Image" />
     </children>
 </AnchorPane>

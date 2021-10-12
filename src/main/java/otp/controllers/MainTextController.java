@@ -1,5 +1,8 @@
 package otp.controllers;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,10 +10,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import otp.Main;
 import otp.SceneController;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class MainTextController {
     @FXML
@@ -66,7 +76,20 @@ public class MainTextController {
         }
     }
 
-    public void fetchQuote() {
+    public void fetchQuote() throws IOException {
+        // connect to the api
+        String quoteURL = "https://api.kanye.rest";
+        URL url = new URL(quoteURL);
+        URLConnection request = url.openConnection();
+        request.connect();
+
+        // print data
+        JsonParser jp = new JsonParser(); //from gson
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        JsonObject rootobj = root.getAsJsonObject();
+        String quote =null;
+        quote = rootobj.get("quote").getAsString();
+        System.out.println(quote);
     }
 }
 
