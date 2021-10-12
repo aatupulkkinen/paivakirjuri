@@ -12,7 +12,6 @@ module otp {
     requires jasypt;
     requires com.google.gson;
 
-
     exports otp;
     opens otp.controllers;
     opens otp.model.entities to org.hibernate.orm.core;

@@ -2,21 +2,15 @@ package otp.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import org.controlsfx.validation.Severity;
-import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
 import otp.Main;
 import otp.SceneController;
+
+import java.io.FileReader;
 
 public class MainTextController {
     @FXML
@@ -72,5 +66,7 @@ public class MainTextController {
         }
     }
 
+    public void fetchQuote() {
+    }
 }
 
