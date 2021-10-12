@@ -77,6 +77,7 @@ public class Main extends Application implements SceneController {
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
     }
+
     public void openSideViewScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sideview.fxml"));

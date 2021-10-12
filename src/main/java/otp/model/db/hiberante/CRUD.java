@@ -23,7 +23,6 @@ abstract public class CRUD {
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            System.out.println("Virhe");
             e.printStackTrace();
             result = null;
             if (t != null)

@@ -10,7 +10,7 @@ public class HibernateUtility {
 
     private static SessionFactory sessionFactory;
 
-    static{
+    static {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure()
                 .build();

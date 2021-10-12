@@ -12,14 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChangePasswordControllerTest extends AutomaticRobotTest {
 
     @BeforeAll
-    public static void createUser(){
+    public static void createUser() {
         UserUtils.getInstance().getUser();
-    }
-
-    @Override
-    public void init() throws Exception {
-        resourceName = "change_password.fxml";
-        super.init();
     }
 
     @Test
@@ -62,5 +56,10 @@ class ChangePasswordControllerTest extends AutomaticRobotTest {
         clickOn("#changePassword");
 
         assertTrue(incorrectData.isVisible());
+    }
+
+    @Override
+    protected String getScene() {
+        return "change_password.fxml";
     }
 }

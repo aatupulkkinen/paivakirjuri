@@ -10,10 +10,11 @@ module otp {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires jasypt;
-
+    requires com.google.gson;
 
     exports otp;
     opens otp.controllers;
     opens otp.model.entities to org.hibernate.orm.core;
     opens otp.model.daos;
+    opens otp.model.daos.mark;
 }

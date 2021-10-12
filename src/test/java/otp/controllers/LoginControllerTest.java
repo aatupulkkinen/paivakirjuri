@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoginControllerTest extends AutomaticRobotTest {
 
-    @Override
-    public void init() throws Exception {
-        resourceName = "login.fxml";
-        super.init();
-    }
-
     @Test
     public void viewsPresent() {
         CustomTextField username = lookup("#username").query();
@@ -39,5 +33,10 @@ class LoginControllerTest extends AutomaticRobotTest {
         clickOn("#loginButton");
 
         assertTrue(incorrectData.isVisible());
+    }
+
+    @Override
+    protected String getScene() {
+        return "login.fxml";
     }
 }

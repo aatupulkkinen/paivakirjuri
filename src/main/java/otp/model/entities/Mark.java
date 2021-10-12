@@ -1,5 +1,7 @@
 package otp.model.entities;
 
+import org.hibernate.annotations.Generated;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -12,6 +14,15 @@ public class Mark {
     private Date modified;
     private int id;
     private String color;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Basic
     @Column(name = "content", nullable = false, length = 10000)
@@ -44,6 +55,7 @@ public class Mark {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

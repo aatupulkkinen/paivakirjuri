@@ -2,6 +2,7 @@ package otp.model.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +20,8 @@ public class User implements Serializable {
         this.secondName = secondName;
     }
 
-    public User() {}
+    public User() {
+    }
 
     @Id
     @Column(name = "name", nullable = false, length = 40)

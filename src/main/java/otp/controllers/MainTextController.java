@@ -1,73 +1,53 @@
 package otp.controllers;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
-import org.controlsfx.validation.Severity;
-import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
 import otp.Main;
 import otp.SceneController;
+import otp.model.daos.UserDao;
+import otp.model.daos.UserLocal;
+import otp.model.daos.mark.MarkDao;
+import otp.model.daos.mark.MarkDaoImpl;
+import otp.model.entities.Mark;
 
-public class MainTextController {
-    @FXML
-    private TextArea writing = new TextArea();
-    @FXML
-    AnchorPane mainView = new AnchorPane(writing);
-    @FXML
-    private Button settings;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button sidebar;
-    @FXML
-    private Button newMark;
-    @FXML
-    private Button saveButton;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+import java.util.ResourceBundle;
 
+public class MainTextController implements Initializable {
 
-    Stage sideView = new Stage();
-    // teksti tallennetaan instanssimuuttujaksi myöhempää käyttöä varten
-    private String text = writing.getText();
+    private final MarkDao markDao;
+    private final UserDao userDao;
 
+    public Button searchButton;
+    public Text dateText;
+    public TextArea markContent;
+    public SplitPane splitPane;
+    public VBox innerContainer;
+    public ImageView backButton;
+    public MenuButton menu;
+    private boolean isSideViewOpen = true;
+    private Text quoteText;
 
-    public void saveText(ActionEvent ae) {
-        System.out.println(text);
+    public MainTextController() {
+        this.markDao = new MarkDaoImpl();
+        this.userDao = new UserLocal();
     }
-
-    // getTextillä voidaan viedä teksti muihin sceneihin
-    public String getText() {
-        return text;
-    }
-
-
-    public void saveText() {
-        text = writing.getText();
-        System.out.println(text);
-    }
-
-    public void sideViewAction() {
-        try {
-            SceneController sc = Main.getSceneController();
-            if (sc == null) return;
-            //sc.openSideViewScene(); ei löydä openSideViewSceneä Mainistä
-
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
-
 
     public void settingsAction() {
         try {
@@ -79,5 +59,54 @@ public class MainTextController {
         }
     }
 
-}
+    public void saveText(ActionEvent actionEvent) {
+        String content = markContent.getText();
+        if (content.isBlank()) return;
+        //
+    }
 
+    public void openSideView(MouseEvent actionEvent) {
+        if (isSideViewOpen) {
+            splitPane.setDividerPosition(0, 0.25);
+            innerContainer.setPrefWidth(900);
+            backButton.setRotate(0);
+        } else {
+            splitPane.setDividerPosition(0, 0.0);
+            innerContainer.setPrefWidth(1200);
+            backButton.setRotate(180);
+        }
+        isSideViewOpen = !isSideViewOpen;
+    }
+
+    public void openMenu(MouseEvent actionEvent) {
+        menu.fire();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String name = userDao.get("", "").getName();
+        List<Mark> marks = markDao.getAll(name);
+        System.out.println(marks);
+    }
+
+    private String quote = null;
+
+    public void fetchQuote() throws IOException {
+        // connect to the api
+        String quoteURL = "https://api.kanye.rest";
+        URL url = new URL(quoteURL);
+        URLConnection request = url.openConnection();
+        request.connect();
+
+        // print data
+        JsonParser jp = new JsonParser();
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        JsonObject rootobj = root.getAsJsonObject();
+        quote = rootobj.get("quote").getAsString();
+        System.out.println(quote);
+        // quoteText.setText(quote);
+        // quoteText.setVisible(true);
+
+        // return quote;
+    }
+}
