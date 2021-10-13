@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -48,6 +49,7 @@ public class MainTextController implements Initializable {
     public ListView marksList;
     public Text saveStatus;
     private boolean isSideViewOpen = true;
+    @FXML
     private Text quoteText;
     private String username;
     private Mark selectedMark = null;
@@ -182,8 +184,8 @@ public class MainTextController implements Initializable {
         JsonObject rootobj = root.getAsJsonObject();
         quote = rootobj.get("quote").getAsString();
         System.out.println(quote);
-        // quoteText.setText(quote);
-        // quoteText.setVisible(true);
+        quoteText.setText(quote);
+        quoteText.setVisible(true);
 
         // return quote;
     }
