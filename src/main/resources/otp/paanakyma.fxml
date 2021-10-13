@@ -92,6 +92,7 @@
                                                                         <MenuItem mnemonicParsing="false" text="Kuva" />
                                                                         <MenuItem mnemonicParsing="false" text="Emoji" />
                                                                         <MenuItem mnemonicParsing="false" text="Väri" />
+                                                                        <MenuItem onAction="#newNote" mnemonicParsing="false" text="Note" />
                                                                         <MenuItem mnemonicParsing="false" onAction="#fetchQuote" text="Quote" />
                                                                         <MenuItem mnemonicParsing="false" text="Tagit" /> </items>
                                                                 </MenuButton>
