@@ -7,4 +7,5 @@ import java.util.List;
 public interface MarkDao {
     List<Mark> getAll(String username);
     boolean insert(Mark mark);
+    boolean update(Mark mark);
 }

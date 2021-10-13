@@ -16,6 +16,18 @@ public class Mark {
     private String color;
     private String name;
 
+    @Override
+    public String toString() {
+        return "Mark{" +
+                "content='" + content + '\'' +
+                ", created=" + created +
+                ", modified=" + modified +
+                ", id=" + id +
+                ", color='" + color + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

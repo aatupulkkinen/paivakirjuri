@@ -45,7 +45,7 @@
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
             <children>
                 <Button id="changePassword" fx:id="changePassword" alignment="CENTER" mnemonicParsing="false"
-                        onAction="#changePassword" styleClass="btn-primary" text="Vaihda salasana"
+                        onAction="#changePassword" styleClass="btn" text="Vaihda salasana"
                         textAlignment="CENTER">
                     <VBox.margin>
                         <Insets/>

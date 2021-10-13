@@ -26,4 +26,13 @@ public class MarkDaoImpl extends CRUD implements MarkDao {
         });
         return result != null;
     }
+
+    @Override
+    public boolean update(Mark mark) {
+        Object result = openWithTransaction((session) -> {
+            session.update(mark);
+            return true;
+        });
+        return result != null;
+    }
 }

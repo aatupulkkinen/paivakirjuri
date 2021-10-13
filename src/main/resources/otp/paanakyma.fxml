@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
@@ -15,92 +16,127 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.MainTextController">
+<AnchorPane fx:id="mainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.MainTextController">
     <children>
         <VBox prefHeight="800.0" prefWidth="1200.0">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0">
                     <children>
-                        <TextField prefHeight="24.0" prefWidth="215.0" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" styleClass="btn-primary" text="Search">
+                        <TextField prefHeight="24.0" prefWidth="215.0"/>
+                        <Button fx:id="searchButton" mnemonicParsing="false" styleClass="btn" text="Search">
                             <HBox.margin>
-                                <Insets left="20.0" />
+                                <Insets left="20.0"/>
                             </HBox.margin>
                         </Button>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="850.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#saveText" text="Save">
+                                <Button mnemonicParsing="false" onAction="#saveText" styleClass="btn"
+                                        text="Save">
                                     <HBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" onAction="#settingsAction" styleClass="btn-primary" text="Settings">
+                                <Button mnemonicParsing="false" onAction="#settingsAction" styleClass="btn"
+                                        text="Settings">
                                     <HBox.margin>
-                                        <Insets left="20.0" />
+                                        <Insets left="20.0"/>
                                     </HBox.margin>
                                 </Button>
                             </children>
                         </HBox>
                     </children>
                     <VBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="20.0"/>
                     </VBox.margin>
                 </HBox>
                 <SplitPane fx:id="splitPane" dividerPositions="0.0" prefHeight="750.0" prefWidth="1200.0">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="800.0" prefWidth="341.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="800.0"
+                                    prefWidth="341.0">
                             <padding>
-                                <Insets top="20.0" />
+                                <Insets top="20.0"/>
                             </padding>
+                            <children>
+                                <ListView fx:id="marksList" layoutX="-6.0" layoutY="-1.0" prefHeight="750.0"
+                                          prefWidth="365.0"/>
+                            </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                             <children>
-                                <VBox fx:id="innerContainer" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="748.0" prefWidth="1200.0" AnchorPane.topAnchor="20.0">
+                                <VBox fx:id="innerContainer" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308"
+                                      minWidth="-Infinity" prefHeight="748.0" prefWidth="1200.0"
+                                      AnchorPane.topAnchor="20.0">
                                     <children>
-                                        <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                                        <TextArea fx:id="markContent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="600.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                                        <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date"/>
+                                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0"
+                                              prefWidth="200.0">
+                                            <children>
+                                                <Text fx:id="saveStatus" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                      text="Status" textAlignment="CENTER" textOrigin="CENTER"
+                                                      visible="false"/>
+                                            </children>
                                             <VBox.margin>
-                                                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                                                <Insets left="35.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <TextArea fx:id="markContent" maxHeight="-Infinity" minHeight="-Infinity"
+                                                  prefHeight="570.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                                            <VBox.margin>
+                                                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0"/>
                                             </VBox.margin>
                                         </TextArea>
                                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0">
                                             <children>
-                                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#openSideView" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="40.0"
+                                                           onMouseClicked="#openSideView" pickOnBounds="true"
+                                                           preserveRatio="true" rotate="180.0">
                                                     <image>
-                                                        <Image url="@images/back_circle.png" />
+                                                        <Image url="@images/back_circle.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="1000.0" HBox.hgrow="ALWAYS">
+                                                <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="1000.0"
+                                                      HBox.hgrow="ALWAYS">
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="44.0">
                                                             <children>
-                                                                <MenuButton fx:id="menu" alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" opacity="0.0" popupSide="TOP" prefHeight="49.0" prefWidth="44.0">
+                                                                <MenuButton fx:id="menu" alignment="TOP_CENTER"
+                                                                            contentDisplay="RIGHT"
+                                                                            mnemonicParsing="false" opacity="0.0"
+                                                                            popupSide="TOP" prefHeight="49.0"
+                                                                            prefWidth="44.0">
                                                                     <items>
-                                                                        <MenuItem mnemonicParsing="false" text="Action 1" onAction="#fetchQuote" />
-                                                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                                        <MenuItem mnemonicParsing="false"
+                                                                                  onAction="#fetchQuote"
+                                                                                  text="Action 1"/>
+                                                                        <MenuItem mnemonicParsing="false"
+                                                                                  text="Action 2"/>
                                                                     </items>
                                                                 </MenuButton>
-                                                                <ImageView fitHeight="44.0" fitWidth="82.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
+                                                                <ImageView fitHeight="44.0" fitWidth="82.0"
+                                                                           onMouseClicked="#openMenu"
+                                                                           pickOnBounds="true" preserveRatio="true">
                                                                     <image>
-                                                                        <Image url="@images/plus.png" />
+                                                                        <Image url="@images/plus.png"/>
                                                                     </image>
                                                                 </ImageView>
                                                             </children>
                                                             <HBox.margin>
-                                                                <Insets right="20.0" />
+                                                                <Insets right="20.0"/>
                                                             </HBox.margin>
                                                         </AnchorPane>
                                                     </children>
                                                     <HBox.margin>
-                                                        <Insets right="20.0" />
+                                                        <Insets right="20.0"/>
                                                     </HBox.margin>
                                                 </HBox>
                                             </children>
                                             <VBox.margin>
-                                                <Insets />
+                                                <Insets/>
                                             </VBox.margin>
                                             <padding>
-                                                <Insets left="30.0" />
+                                                <Insets left="30.0"/>
                                             </padding>
                                         </HBox>
                                     </children>
@@ -109,12 +145,11 @@
                         </AnchorPane>
                     </items>
                     <VBox.margin>
-                        <Insets />
+                        <Insets/>
                     </VBox.margin>
                 </SplitPane>
             </children>
         </VBox>
-        <Line endX="1200.0" layoutY="50.0" strokeWidth="2.0" AnchorPane.leftAnchor="0.0" />
+        <Line endX="1200.0" layoutY="50.0" strokeWidth="2.0" AnchorPane.leftAnchor="0.0"/>
     </children>
 </AnchorPane>
-

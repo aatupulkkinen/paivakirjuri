@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.Mnemonic;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 import otp.model.daos.UserLocal;
@@ -74,13 +76,6 @@ public class Main extends Application implements SceneController {
     public void openSettingsScene() throws IOException {
         if (scene == null) return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("settings.fxml"));
-        Parent mainCallWindowFXML = loader.load();
-        scene.setRoot(mainCallWindowFXML);
-    }
-
-    public void openSideViewScene() throws IOException {
-        if (scene == null) return;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sideview.fxml"));
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
     }
