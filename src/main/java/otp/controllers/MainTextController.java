@@ -189,4 +189,8 @@ public class MainTextController implements Initializable {
 
         // return quote;
     }
+
+    public void newNote(ActionEvent actionEvent) {
+        updateMark(null);
+    }
 }
