@@ -5,84 +5,101 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="otp.controllers.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.RegisterController">
     <children>
-        <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true"
-                   preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0"
-                   AnchorPane.topAnchor="10.0">
+        <ImageView fx:id="back" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="766.1538467407227" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>
-                <Image url="@images/Group.png"/>
+                <Image url="@images/Group.png" />
             </image>
         </ImageView>
-        <HBox alignment="CENTER" layoutX="513.0" layoutY="14.0" prefHeight="40.0" prefWidth="238.0"
-              AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0">
+        <VBox alignment="CENTER" layoutX="449.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" AnchorPane.leftAnchor="449.0" AnchorPane.rightAnchor="448.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy käyttäjäksi!" textAlignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy" textAlignment="CENTER">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="37.0" />
                     </font>
                 </Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER" layoutX="297.0" layoutY="713.0" prefHeight="40.0" prefWidth="200.0"
-              AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <children>
-                <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" styleClass="btn"
-                        text="Rekisteröidy">
-                    <padding>
-                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0"/>
-                    </padding>
-                </Button>
-            </children>
-        </HBox>
-        <VBox alignment="CENTER" fillWidth="false" layoutX="532.0" layoutY="260.0" maxHeight="-Infinity"
-              maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0">
-            <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Syötä etunimesi">
+               <VBox.margin>
+                  <Insets bottom="-15.0" top="30.0" />
+               </VBox.margin>
+            </Text>
                 <CustomTextField fx:id="fName" promptText="Etunimi">
                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
                 </CustomTextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Syötä sukunimesi">
+               <VBox.margin>
+                  <Insets bottom="-15.0" top="30.0" />
+               </VBox.margin>
+            </Text>
                 <CustomTextField fx:id="lName" promptText="Sukunimi">
                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
                 </CustomTextField>
-                <CustomTextField fx:id="userName" promptText="Käyttäjänimi">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Syötä käyttäjätunnus">
+               <VBox.margin>
+                  <Insets bottom="-15.0" top="30.0" />
+               </VBox.margin>
+            </Text>
+                <CustomTextField fx:id="userName" promptText="Käyttäjätunnus">
                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
                 </CustomTextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Syötä salasana">
+               <VBox.margin>
+                  <Insets bottom="-15.0" top="30.0" />
+               </VBox.margin>
+            </Text>
                 <CustomTextField fx:id="passWord" promptText="Salasana">
                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
                 </CustomTextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Toista salasana">
+               <VBox.margin>
+                  <Insets bottom="-15.0" top="30.0" />
+               </VBox.margin>
+            </Text>
                 <CustomTextField fx:id="confirmPassword" promptText="Vahvista salasana">
                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
                 </CustomTextField>
+               <Text fx:id="incorrectPassword" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Salasana on virheellinen, tai ei täsmännyt" textAlignment="CENTER" visible="false" wrappingWidth="409.58978271484375">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+               </Text>
+                <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="324.0" styleClass="btn" text="Rekisteröidy">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+                </Button>
             </children>
         </VBox>
-        <HBox alignment="CENTER" fillHeight="false" layoutX="532.0" layoutY="636.0" prefHeight="25.0" prefWidth="200.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Text fx:id="incorrectPassword" fill="RED" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE"
-                  strokeWidth="0.0" text="Salasana on virheellinen, tai ei täsmännyt" textAlignment="CENTER"
-                  wrappingWidth="409.58978271484375" visible="false">
-                <VBox.margin>
-                    <Insets top="20.0"/>
-                </VBox.margin>
-            </Text>
-        </HBox>
     </children>
 </AnchorPane>

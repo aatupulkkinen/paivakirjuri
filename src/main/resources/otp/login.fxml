@@ -10,69 +10,59 @@
 <?import javafx.scene.text.TextFlow?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="otp.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.LoginController">
     <children>
-        <VBox layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-              minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+        <VBox layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kirjaudu" textAlignment="CENTER"
-                      wrappingWidth="409.58978271484375">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kirjaudu" textAlignment="CENTER" wrappingWidth="409.58978271484375">
                     <font>
-                        <Font size="37.0"/>
+                        <Font size="37.0" />
                     </font>
                     <VBox.margin>
-                        <Insets top="100.0"/>
+                        <Insets top="100.0" />
                     </VBox.margin>
                 </Text>
                 <CustomTextField fx:id="username" promptText="Käyttäjätunnus">
                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="50.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                 </CustomTextField>
                 <CustomTextField fx:id="password" promptText="Salasana">
                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="30.0"/>
+                        <Insets left="30.0" right="30.0" top="30.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                 </CustomTextField>
                 <HBox prefHeight="42.0" prefWidth="400.0">
                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="5.0"/>
+                        <Insets left="30.0" right="30.0" top="5.0" />
                     </VBox.margin>
                     <children>
-                        <TextFlow fx:id="registerText" onMouseClicked="#openRegisterScene" prefHeight="200.0"
-                                  prefWidth="200.0">
+                        <TextFlow fx:id="registerText" onMouseClicked="#openRegisterScene" prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rekisteröidy" />
                             </children>
                         </TextFlow>
-                        <TextFlow fx:id="forgotPassword" onMouseClicked="#openForgotPasswordScene" prefHeight="200.0"
-                                  prefWidth="200.0" textAlignment="RIGHT">
+                        <TextFlow fx:id="forgotPassword" onMouseClicked="#openForgotPasswordScene" prefHeight="200.0" prefWidth="200.0" textAlignment="RIGHT">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?"
-                                      textAlignment="JUSTIFY"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unohditko salasanasi?" textAlignment="JUSTIFY" />
                             </children>
                         </TextFlow>
                     </children>
                 </HBox>
-                <Button fx:id="loginButton" styleClass="btn" mnemonicParsing="false" onAction="#login"
-                        prefHeight="40.0" prefWidth="400.0" text="Kirjaudu">
+                <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="400.0" styleClass="btn" text="Kirjaudu">
                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="100.0"/>
+                        <Insets left="20.0" right="20.0" top="100.0" />
                     </VBox.margin>
                 </Button>
-                <Text fx:id="incorrectData" fill="RED" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE"
-                      strokeWidth="0.0" text="virheellinen käyttäjätunnus tai salasana" textAlignment="CENTER"
-                      visible="false" wrappingWidth="409.58978271484375">
+                <Text fx:id="incorrectData" fill="RED" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="virheellinen käyttäjätunnus tai salasana" textAlignment="CENTER" visible="false" wrappingWidth="409.58978271484375">
                     <VBox.margin>
-                        <Insets top="20.0"/>
+                        <Insets top="20.0" />
                     </VBox.margin>
                 </Text>
             </children>
