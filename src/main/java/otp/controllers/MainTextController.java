@@ -74,25 +74,24 @@ public class MainTextController implements Initializable {
     public void saveText(ActionEvent actionEvent) {
         String content = markContent.getText();
         if (content.isBlank()) return;
+        boolean status;
         if (selectedMark == null) {
             Mark mark = new Mark();
             mark.setCreated(new Date(System.currentTimeMillis()));
             mark.setName(username);
             mark.setColor("#101010");
             mark.setContent(content);
-            boolean status = markDao.insert(mark);
+            status = markDao.insert(mark);
             if (status) {
                 observableList.add(mark);
-                mark.setContent(content);
+                updateMark(mark);
             }
-            updateSaveStatus(status);
-
         } else {
             selectedMark.setModified(new Date(System.currentTimeMillis()));
             selectedMark.setContent(content);
-            boolean status = markDao.update(selectedMark);
-            updateSaveStatus(status);
+            status = markDao.update(selectedMark);
         }
+        updateSaveStatus(status);
     }
 
     private void updateSaveStatus(boolean b) {

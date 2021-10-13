@@ -30,7 +30,7 @@ public class MarkDaoImpl extends CRUD implements MarkDao {
     @Override
     public boolean update(Mark mark) {
         Object result = openWithTransaction((session) -> {
-            session.update(mark);
+            session.saveOrUpdate(mark);
             return true;
         });
         return result != null;
