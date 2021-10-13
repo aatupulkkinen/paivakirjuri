@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.MainTextController">
+<AnchorPane fx:id="mainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.controllers.MainTextController">
     <children>
         <VBox prefHeight="800.0" prefWidth="1200.0">
             <children>
@@ -75,7 +75,6 @@
                                                 <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
                                             </VBox.margin>
                                         </TextArea>
-                                        <Text fx:id="quoteText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="400.0" />
                                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0">
                                             <children>
                                                 <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#openSideView" pickOnBounds="true" preserveRatio="true" rotate="180.0">
@@ -92,7 +91,7 @@
                                                                         <MenuItem mnemonicParsing="false" text="Kuva" />
                                                                         <MenuItem mnemonicParsing="false" text="Emoji" />
                                                                         <MenuItem mnemonicParsing="false" text="Väri" />
-                                                                        <MenuItem onAction="#newNote" mnemonicParsing="false" text="Note" />
+                                                                        <MenuItem mnemonicParsing="false" onAction="#newNote" text="Note" />
                                                                         <MenuItem mnemonicParsing="false" onAction="#fetchQuote" text="Quote" />
                                                                         <MenuItem mnemonicParsing="false" text="Tagit" /> </items>
                                                                 </MenuButton>
@@ -119,6 +118,7 @@
                                                 <Insets left="30.0" />
                                             </padding>
                                         </HBox>
+                                        <Text fx:id="quoteText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="700.0" VBox.vgrow="ALWAYS" />
                                     </children>
                                 </VBox>
                             </children>

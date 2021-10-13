@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Quote {
     private int quoteId;
     private String content;
+    private int markId;
 
     @Id
     @Column(name = "quote_id", nullable = false)
@@ -40,5 +41,13 @@ public class Quote {
     @Override
     public int hashCode() {
         return Objects.hash(quoteId, content);
+    }
+
+    public int getMarkId() {
+        return markId;
+    }
+
+    public void setMarkId(int markId) {
+        this.markId = markId;
     }
 }

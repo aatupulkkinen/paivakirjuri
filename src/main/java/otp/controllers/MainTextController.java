@@ -20,11 +20,15 @@ import otp.model.daos.UserDao;
 import otp.model.daos.UserLocal;
 import otp.model.daos.mark.MarkDao;
 import otp.model.daos.mark.MarkDaoImpl;
+import otp.model.daos.quote.QuoteDao;
+import otp.model.daos.quote.QuoteDaoImpl;
 import otp.model.entities.Mark;
+import otp.model.entities.Quote;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Date;
@@ -38,6 +42,7 @@ public class MainTextController implements Initializable {
 
     private final MarkDao markDao;
     private final UserDao userDao;
+    private final QuoteDao quoteDao;
 
     public Button searchButton;
     public Text dateText;
@@ -59,6 +64,7 @@ public class MainTextController implements Initializable {
     public MainTextController() {
         this.markDao = new MarkDaoImpl();
         this.userDao = new UserLocal();
+        this.quoteDao = new QuoteDaoImpl();
     }
 
     public void settingsAction() {
@@ -162,31 +168,51 @@ public class MainTextController implements Initializable {
         if (mark == null) {
             markContent.setText("");
             dateText.setText(LocalDate.now().format(formatter));
+            quoteText.setText("");
         } else {
             markContent.setText(mark.getContent());
+            Quote quote = quoteDao.get(selectedMark.getId());
+            quoteText.setText(quote == null ? "" : quote.getContent());
             dateText.setText(mark.getCreated().toLocalDate().format(formatter));
         }
     }
 
     private String quote = null;
 
-    public void fetchQuote() throws IOException {
-        // connect to the api
-        String quoteURL = "https://api.kanye.rest";
-        URL url = new URL(quoteURL);
-        URLConnection request = url.openConnection();
-        request.connect();
+    public void fetchQuote() {
+        new Thread(() -> {
+            try {
+                // connect to the api
+                String quoteURL = "https://api.kanye.rest";
+                URL url = null;
+                url = new URL(quoteURL);
+                URLConnection request = url.openConnection();
+                request.connect();
 
-        // print data
-        JsonParser jp = new JsonParser();
-        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-        JsonObject rootobj = root.getAsJsonObject();
-        quote = rootobj.get("quote").getAsString();
-        System.out.println(quote);
-        quoteText.setText(quote);
-        quoteText.setVisible(true);
+                // print data
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
+                quote = rootobj.get("quote").getAsString();
+                // return quote;
+                System.out.println(quote);
+                quoteText.setText(quote);
+                quoteText.setVisible(true);
+                addQuoteToMark(quote);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 
-        // return quote;
+    private void addQuoteToMark(String quote) {
+        if (selectedMark == null) return;
+        Quote Obj = new Quote();
+        Obj.setMarkId(selectedMark.getId());
+        Obj.setContent(quote);
+        quoteDao.insert(Obj);
     }
 
     public void newNote(ActionEvent actionEvent) {

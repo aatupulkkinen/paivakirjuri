@@ -11,5 +11,8 @@
         <property name="content">
             <column name="content" sql-type="varchar(150)" length="150"/>
         </property>
+        <property name="markId" not-null="true">
+            <column name="mark_id" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>
