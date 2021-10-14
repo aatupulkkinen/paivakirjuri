@@ -33,6 +33,10 @@ Käyttäjälle luodaan tunnus jonka takaa löytyy päiväkirjaan tehdyt merkinn�
 
 Ohjelmaa voi käyttää kuka tahansa joka haluaa pitää kirjaa päivän tekemisistä. Tehdyt merkinnät ovat haettavissa myöhemmin ja näin käyttäjä kykenee päiväkirjasta tarkastamaan päivien tapahtumia, ideoita ja oivalluksia.
 
+**Kehitysympäristö:**
+
+Sovellusta työstettiin Jetbrainsin IntelliJ IDEA-kehitysympäristöllä. Kyseisen IDE:n saa ladattua Jetbrainsin sivuilta. IntelliJ:stä on maksullisen version lisäksi saatavilla ilmainen versio karsituilla ominaisuuksilla. Tämän sovelluksen kehityksessä käytettiin maksullista "Ultimate"-versiota. Käynnistettäessä kehitysympäristön, pyydetään käyttäjää luomaan uusi projekti. Tätä sovellusta varten loimme uuden Maven-projektin (IntelliJ IDEA tarjoaa lukuisia projektityyppejä mutta tämän projektin tarkoitukseen valitsimme Maven-projektin).
+
 ## Kuvia käyttöliittymän prototyypistä
 
 ![Kirjautumisnäkymä](kayttoliittyma-prototyypin-kuvat/kirjautumisnakyma.png "Kuva käyttöliittymän kirjautumisnäkymästä")
