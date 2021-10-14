@@ -14,7 +14,7 @@ public class QuoteDaoImpl extends CRUD implements QuoteDao {
                         .setParameter("mark_id", markId)
                         .list()
         );
-        return quotes.size() > 0 ? quotes.get(0) : null;
+        return quotes.size() > 0 ? quotes.get(quotes.size() - 1): null;
     }
 
     @Override

@@ -18,4 +18,5 @@ module otp {
     opens otp.model.daos;
     opens otp.model.daos.mark;
     opens otp.model.daos.quote;
+    opens otp.model.daos.image;
 }

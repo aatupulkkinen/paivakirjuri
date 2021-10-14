@@ -70,7 +70,11 @@
                                                 <Insets left="35.0" />
                                             </VBox.margin>
                                         </HBox>
-                                        <TextArea fx:id="markContent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="570.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                                        <ImageView fx:id="markImage" fitHeight="170.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+                                            <image>
+                                            </image>
+                                        </ImageView>
+                                        <TextArea fx:id="markContent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                             <VBox.margin>
                                                 <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
                                             </VBox.margin>
@@ -88,14 +92,15 @@
                                                             <children>
                                                                 <MenuButton fx:id="menu" alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" opacity="0.0" popupSide="TOP" prefHeight="49.0" prefWidth="44.0">
                                                                     <items>
-                                                                        <MenuItem mnemonicParsing="false" text="Kuva" />
+                                                                        <MenuItem mnemonicParsing="false" onAction="#addImage" text="Kuva" />
                                                                         <MenuItem mnemonicParsing="false" text="Emoji" />
                                                                         <MenuItem mnemonicParsing="false" text="Väri" />
                                                                         <MenuItem mnemonicParsing="false" onAction="#newNote" text="Note" />
                                                                         <MenuItem mnemonicParsing="false" onAction="#fetchQuote" text="Quote" />
-                                                                        <MenuItem mnemonicParsing="false" text="Tagit" /> </items>
+                                                                        <MenuItem mnemonicParsing="false" text="Tagit" />
+                                                                    </items>
                                                                 </MenuButton>
-                                                                <ImageView fitHeight="44.0" fitWidth="82.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
+                                                                <ImageView fx:id="imageView" fitHeight="44.0" fitWidth="82.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
                                                                     <image>
                                                                         <Image url="@images/plus.png" />
                                                                     </image>
