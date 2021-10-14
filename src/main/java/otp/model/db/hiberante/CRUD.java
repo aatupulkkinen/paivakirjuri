@@ -20,7 +20,7 @@ abstract public class CRUD {
             Session session = openSession();
             t = session.beginTransaction();
             result = block.doOperation(session);
-            session.getTransaction().commit();
+            t.commit();
             session.close();
         } catch (Exception e) {
             e.printStackTrace();

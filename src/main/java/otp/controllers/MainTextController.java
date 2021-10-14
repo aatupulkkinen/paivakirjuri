@@ -9,24 +9,33 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import otp.Main;
 import otp.SceneController;
 import otp.model.daos.UserDao;
 import otp.model.daos.UserLocal;
+import otp.model.daos.image.ImageDao;
+import otp.model.daos.image.ImageDaoImpl;
 import otp.model.daos.mark.MarkDao;
 import otp.model.daos.mark.MarkDaoImpl;
+import otp.model.daos.quote.QuoteDao;
+import otp.model.daos.quote.QuoteDaoImpl;
+import otp.model.entities.Image;
 import otp.model.entities.Mark;
+import otp.model.entities.Quote;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.Buffer;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +47,8 @@ public class MainTextController implements Initializable {
 
     private final MarkDao markDao;
     private final UserDao userDao;
+    private final QuoteDao quoteDao;
+    private final ImageDao imageDao;
 
     public Button searchButton;
     public Text dateText;
@@ -48,6 +59,8 @@ public class MainTextController implements Initializable {
     public MenuButton menu;
     public ListView marksList;
     public Text saveStatus;
+    @FXML
+    private ImageView markImage;
     private boolean isSideViewOpen = true;
     @FXML
     private Text quoteText;
@@ -59,6 +72,8 @@ public class MainTextController implements Initializable {
     public MainTextController() {
         this.markDao = new MarkDaoImpl();
         this.userDao = new UserLocal();
+        this.quoteDao = new QuoteDaoImpl();
+        this.imageDao = new ImageDaoImpl();
     }
 
     public void settingsAction() {
@@ -74,25 +89,25 @@ public class MainTextController implements Initializable {
     public void saveText(ActionEvent actionEvent) {
         String content = markContent.getText();
         if (content.isBlank()) return;
+        boolean status = false;
         if (selectedMark == null) {
             Mark mark = new Mark();
             mark.setCreated(new Date(System.currentTimeMillis()));
             mark.setName(username);
             mark.setColor("#101010");
             mark.setContent(content);
-            boolean status = markDao.insert(mark);
-            if (status) {
+            int id = markDao.insert(mark);
+            if (id != -1) {
+                mark.setId(id);
+                status = true;
                 observableList.add(mark);
-                mark.setContent(content);
             }
-            updateSaveStatus(status);
-
         } else {
             selectedMark.setModified(new Date(System.currentTimeMillis()));
             selectedMark.setContent(content);
-            boolean status = markDao.update(selectedMark);
-            updateSaveStatus(status);
+            status = markDao.update(selectedMark);
         }
+        updateSaveStatus(status);
     }
 
     private void updateSaveStatus(boolean b) {
@@ -145,7 +160,9 @@ public class MainTextController implements Initializable {
                 }
             }
         });
-        marksList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Mark>) (observable, oldValue, newValue) -> updateMark(newValue));
+        marksList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Mark>) (observable, oldValue, newValue) -> {
+            updateMark(newValue);
+        });
         marksList.setItems(observableList);
         fetchMarks();
         updateMark(null);
@@ -159,38 +176,105 @@ public class MainTextController implements Initializable {
     }
 
     private void updateMark(Mark mark) {
-        selectedMark = mark;
-        if (mark == null) {
-            markContent.setText("");
-            dateText.setText(LocalDate.now().format(formatter));
-        } else {
-            markContent.setText(mark.getContent());
-            dateText.setText(mark.getCreated().toLocalDate().format(formatter));
-        }
+        new Thread(() -> {
+            selectedMark = mark;
+            if (mark == null) {
+                markContent.setText("");
+                dateText.setText(LocalDate.now().format(formatter));
+                quoteText.setText("");
+                markImage.setImage(null);
+            } else {
+                markContent.setText(mark.getContent());
+                Quote quote = quoteDao.get(selectedMark.getId());
+                quoteText.setText(quote == null ? "" : quote.getContent());
+                dateText.setText(mark.getCreated().toLocalDate().format(formatter));
+                Image image = imageDao.get(selectedMark.getId());
+                if (image != null) {
+                    markImage.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(image.getContent())));
+                } else {
+                    markImage.setImage(null);
+                }
+            }
+        }).start();
     }
 
     private String quote = null;
 
-    public void fetchQuote() throws IOException {
-        // connect to the api
-        String quoteURL = "https://api.kanye.rest";
-        URL url = new URL(quoteURL);
-        URLConnection request = url.openConnection();
-        request.connect();
+    public void fetchQuote() {
+        new Thread(() -> {
+            try {
+                // connect to the api
+                String quoteURL = "https://api.kanye.rest";
+                URL url = null;
+                url = new URL(quoteURL);
+                URLConnection request = url.openConnection();
+                request.connect();
 
-        // print data
-        JsonParser jp = new JsonParser();
-        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-        JsonObject rootobj = root.getAsJsonObject();
-        quote = rootobj.get("quote").getAsString();
-        System.out.println(quote);
-        quoteText.setText(quote);
-        quoteText.setVisible(true);
+                // print data
+                JsonParser jp = new JsonParser();
+                JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                JsonObject rootobj = root.getAsJsonObject();
+                quote = rootobj.get("quote").getAsString();
+                // return quote;
+                System.out.println(quote);
+                quoteText.setText(quote);
+                quoteText.setVisible(true);
+                addQuoteToMark(quote);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 
-        // return quote;
+    private void addQuoteToMark(String quote) {
+        if (selectedMark == null) return;
+        Quote Obj = new Quote();
+        Obj.setMarkId(selectedMark.getId());
+        Obj.setContent(quote);
+        quoteDao.insert(Obj);
     }
 
     public void newNote(ActionEvent actionEvent) {
         updateMark(null);
+    }
+
+    public void addImage(ActionEvent actionEvent) {
+        Stage stage = Main.getSceneController().getStage();
+        Mark mark = selectedMark;
+        if (stage == null || mark == null) return;
+
+        final FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)", "*.PNG");
+        FileChooser.ExtensionFilter ext3 = new FileChooser.ExtensionFilter("JPG files(*.jpeg)", "*.jpeg");
+        fileChooser.getExtensionFilters().addAll(ext1, ext2, ext3);
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            byte[] bytes = new byte[(int) file.length()];
+            markImage.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(bytes)));
+            saveImage(file, selectedMark.getId());
+        }
+    }
+
+    private void saveImage(File file, int markId) {
+        Thread t = new Thread(() -> {
+            byte[] bytes = new byte[(int) file.length()];
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                fileInputStream.read(bytes);
+                fileInputStream.close();
+                imageDao.insert(bytes, markId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

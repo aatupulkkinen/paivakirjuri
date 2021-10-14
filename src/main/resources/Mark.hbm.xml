@@ -5,8 +5,8 @@
 <hibernate-mapping>
 
     <class name="otp.model.entities.Mark" table="marks" schema="test_eng">
-        <id name="id">
-            <column name="id" sql-type="int(11)"/>
+        <id name="id" type="integer" column="id">
+            <generator class="increment"/>
         </id>
         <property name="content">
             <column name="content" sql-type="varchar(10000)" length="10000"/>
