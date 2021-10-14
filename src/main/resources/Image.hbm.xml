@@ -4,12 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="otp.model.entities.Quote" table="quotes" schema="test_eng">
-        <id name="quoteId">
-            <column name="quote_id" sql-type="int(11)"/>
+    <class name="otp.model.entities.Image" table="images" schema="test_eng">
+        <id name="imageId">
+            <column name="image_id" sql-type="int(11)"/>
         </id>
         <property name="content">
-            <column name="content" sql-type="varchar(150)" length="150"/>
+            <column name="content" sql-type="binary"/>
         </property>
         <property name="markId" not-null="true">
             <column name="mark_id" sql-type="int(11)"/>

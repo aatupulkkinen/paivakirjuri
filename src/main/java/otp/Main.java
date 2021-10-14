@@ -16,6 +16,7 @@ public class Main extends Application implements SceneController {
 
     private static SceneController sceneController = null;
     private Scene scene;
+    private Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,6 +28,7 @@ public class Main extends Application implements SceneController {
         stage.setScene(scene);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.show();
+        this.stage = stage;
     }
 
     public static void main(String[] args) {
@@ -78,6 +80,11 @@ public class Main extends Application implements SceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("settings.fxml"));
         Parent mainCallWindowFXML = loader.load();
         scene.setRoot(mainCallWindowFXML);
+    }
+
+    @Override
+    public Stage getStage() {
+        return stage;
     }
 
     public static SceneController getSceneController() {
