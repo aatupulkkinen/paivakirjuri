@@ -37,6 +37,8 @@ Ohjelmaa voi käyttää kuka tahansa joka haluaa pitää kirjaa päivän tekemis
 
 Sovellusta työstettiin Jetbrainsin IntelliJ IDEA-kehitysympäristöllä. Kyseisen IDE:n saa ladattua Jetbrainsin sivuilta. IntelliJ:stä on maksullisen version lisäksi saatavilla ilmainen versio karsituilla ominaisuuksilla. Tämän sovelluksen kehityksessä käytettiin maksullista "Ultimate"-versiota. Käynnistettäessä kehitysympäristön, pyydetään käyttäjää luomaan uusi projekti. Tätä sovellusta varten loimme uuden Maven-projektin (IntelliJ IDEA tarjoaa lukuisia projektityyppejä mutta tämän projektin tarkoitukseen valitsimme Maven-projektin).
 
+Uuteen Maven-projektiin syntyy tiedosto pom.xml, johon asetetaan erilaisia parametrejä, liitännäisiä ja riippuvuuksia riippuen mitä työkaluja ja kirjastoja sovelluksessa käytetään. Tämän sovelluksen tiedot löytyvät tämän repon juurihakemistossa sijaitsevassa pom.xml-tiedostossa.
+
 ## Kuvia käyttöliittymän prototyypistä
 
 ![Kirjautumisnäkymä](kayttoliittyma-prototyypin-kuvat/kirjautumisnakyma.png "Kuva käyttöliittymän kirjautumisnäkymästä")
