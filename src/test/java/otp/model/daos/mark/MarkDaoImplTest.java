@@ -24,8 +24,8 @@ class MarkDaoImplTest {
         mark.setColor("#212133");
         mark.setContent("this is content");
         mark.setCreated(new Date(System.currentTimeMillis()));
-        boolean result = markDao.insert(mark);
-        assertTrue(result);
+        int result = markDao.insert(mark);
+        assertTrue(result != 1);
 
         List<Mark> marks = markDao.getAll(user.getName());
         assertEquals(1, marks.size());

@@ -1,6 +1,7 @@
 package otp.model.daos;
 
 import org.junit.jupiter.api.RepeatedTest;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +13,8 @@ class UserDaoImplTest {
 
     private final UserDaoImpl userDaoRemote = new UserDaoImpl();
 
+    private final EncryptionHandler encryptionHandler = new EncryptionHandler();
+
     @RepeatedTest(5)
     void testInsertAndGetUser() {
         final String name = generateString();
@@ -21,8 +24,8 @@ class UserDaoImplTest {
         final User user = userDaoRemote.get(name, password);
 
         assertTrue(result);
-        assertEquals(user.getName(), name);
-        assertEquals(user.getPassword(), password);
+        assertEquals(encryptionHandler.decrypt(user.getName()), name);
+        assertEquals(encryptionHandler.decrypt(user.getPassword()), password);
     }
 
 }

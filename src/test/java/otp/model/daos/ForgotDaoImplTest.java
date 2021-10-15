@@ -1,6 +1,7 @@
 package otp.model.daos;
 
 import org.junit.jupiter.api.Test;
+import otp.model.encryption.EncryptionHandler;
 import otp.model.entities.Code;
 import otp.model.entities.User;
 import otp.util.UserUtils;
@@ -12,6 +13,8 @@ class ForgotDaoImplTest {
 
     private final ForgotDaoImpl forgotDao = new ForgotDaoImpl();
 
+    private final EncryptionHandler encryptionHandler = new EncryptionHandler();
+
     @Test
     void testInsertAndGet() {
         User user = UserUtils.getInstance().getUser();
@@ -22,7 +25,7 @@ class ForgotDaoImplTest {
         final String name = generateString();
         boolean result = forgotDao.insert(new Code(user.getName(), code));
 
-        final Code code2 = forgotDao.get(user.getName());
+        final Code code2 = forgotDao.get(encryptionHandler.decrypt(user.getName()));
 
         assertTrue(result);
         assertEquals(code2.getName(), user.getName());

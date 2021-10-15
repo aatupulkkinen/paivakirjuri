@@ -17,7 +17,7 @@ public class RegisterControllerTest extends AutomaticRobotTest {
         assertEquals(lName.getPromptText(), "Sukunimi");
 
         CustomTextField userName = lookup("#userName").query();
-        assertEquals(userName.getPromptText(), "Käyttäjänimi");
+        assertEquals(userName.getPromptText(), "Käyttäjätunnus");
 
         CustomTextField passWord = lookup("#passWord").query();
         assertEquals(passWord.getPromptText(), "Salasana");
