@@ -252,8 +252,6 @@ public class MainTextController implements Initializable {
         fileChooser.getExtensionFilters().addAll(ext1, ext2, ext3);
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            byte[] bytes = new byte[(int) file.length()];
-            markImage.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(bytes)));
             saveImage(file, selectedMark.getId());
         }
     }
@@ -266,6 +264,7 @@ public class MainTextController implements Initializable {
                 fileInputStream.read(bytes);
                 fileInputStream.close();
                 imageDao.insert(bytes, markId);
+                markImage.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(bytes)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
